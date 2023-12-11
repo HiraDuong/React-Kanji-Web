@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    height: 200px;
+    width: 300px;
+    flex-direction: column;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.image{
+    height: 200px;
+    width: 300px;
+}
+
+.name{
+    font-size: 20px;
+    color: white;
+}
+.description{
+    font-size: 16px;
+}

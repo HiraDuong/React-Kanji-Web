@@ -1,0 +1,35 @@
+/* NavbarStyles.css */
+
+nav {
+    height: 60px;
+    width: 100%;
+    background-color: #333; /* Màu nền navbar */
+    display: flex;
+  }
+  
+  ul {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+  }
+  li{
+    align-items: center;
+    display: flex;
+    height: 100%;
+  }
+  a {
+    text-decoration: none;
+    color: #fff; /* Màu chữ */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s; /* Hiệu ứng hover màu nền */
+  }
+  
+  li:hover {
+    background-color: #555; /* Màu nền khi hover */
+  }

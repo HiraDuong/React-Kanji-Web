@@ -1,0 +1,20 @@
+
+.course-item{
+    margin-top: 20px;
+    display: flex;
+    height: 60px;
+    width: 800px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgba(117, 237, 237, 0.651);
+}
+#course-image>img{
+    height: 60px;
+    width: 100px;
+    margin-right: 30px;
+}
+
+#name{
+    color: white;
+    font-weight: 700;
+}

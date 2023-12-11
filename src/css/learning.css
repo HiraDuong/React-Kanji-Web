@@ -1,0 +1,13 @@
+.btn-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+.btn-container .RememberButton{
+    margin: 20px;
+}

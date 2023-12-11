@@ -1,0 +1,79 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: rgba(0, 125.80, 196.56, 0.20);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px rgba(0, 125.80, 196.56, 0.10) solid;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+  }
+  
+
+  .centerText {
+
+    position: absolute;
+    color: #F8FAFC;
+    font-size: 40px;
+    font-family: 'Inter';
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+  
+  .box {
+    width: 300px;
+    height: 150px;
+    margin: 20px;
+    background: rgba(0, 125.80, 196.56, 0.20);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px rgba(0, 125.80, 196.56, 0.10) solid;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    cursor: pointer;
+  }
+  
+  .innerText {
+    color: #3B82F6;
+    font-size: 28px;
+    font-family: 'Inter';
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+  
+  .box:hover {
+    background: rgba(1, 151, 239, 0.573);
+  }
+  
+  .box-container{
+    display: flex;
+    flex-direction: row;
+  }
+/* Thêm màu nền khi đáp án được chọn */
+/* Màu xanh cho đáp án đúng */
+.correct {
+    background-color: #4caf50; /* Màu xanh lá cây (hoặc màu bạn muốn) */
+    color: #fff; /* Màu chữ trắng (hoặc màu bạn muốn) */
+  }
+  
+  .correct:hover{
+    background-color: #4caf50; /* Màu xanh lá cây (hoặc màu bạn muốn) */
+
+  } 
+  /* Màu đỏ cho đáp án sai */
+  .incorrect {
+    background-color: #ff0000; /* Màu đỏ (hoặc màu bạn muốn) */
+    color: #fff; /* Màu chữ trắng (hoặc màu bạn muốn) */
+  }
+  .incorrect:hover{
+    background-color: #ff0000; /* Màu đỏ (hoặc màu bạn muốn) */
+
+  }

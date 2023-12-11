@@ -1,0 +1,27 @@
+/* Counter.css */
+
+.counter-container {
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+    transform: rotate(0deg);
+    transform-origin: 0 0;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  .counter-text {
+    color: #020617;
+    font-size: 36px;
+    font-family: 'Inter';
+    font-weight: 500;
+    word-wrap: break-word;
+    margin: 0 10px;
+    width: 100px;
+  }
+  
+  .arr-left,
+  .arr-right{
+    cursor: pointer;
+  }

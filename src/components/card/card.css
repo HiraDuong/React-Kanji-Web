@@ -1,0 +1,43 @@
+/* styles.css */
+
+.cardContainer {
+    width: 600px;
+    height: 400px;
+
+    background: rgba(0, 125.80, 196.56, 0.20);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px rgba(0, 125.80, 196.56, 0.10) solid;
+
+    flex-direction: column;
+ 
+    align-items: center;
+  
+    display: inline-flex;
+  }
+  
+  .text-primary {
+    color: #60A5FA;
+  }
+  
+  .card-title {
+    font-size: 128px;
+    height: 300px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  .pronunce{
+    font-size: 30px;
+    font-family: 'Inter';
+    font-weight: 150;
+    word-wrap: break-word;
+  }
+  .subtitle {
+    font-size: 40px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  

@@ -1,0 +1,11 @@
+div {
+    position: absolute;
+    left: 64px;
+    top: 154px;
+    color: #3B82F6;
+    font-size: 44px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
