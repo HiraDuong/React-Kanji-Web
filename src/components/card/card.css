@@ -2,7 +2,7 @@
 
 .cardContainer {
     width: 600px;
-    height: 400px;
+    height: 300px;
 
     background: rgba(0, 125.80, 196.56, 0.20);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -23,7 +23,7 @@
   
   .card-title {
     font-size: 128px;
-    height: 300px;
+    height: 200px;
     font-family: 'Inter';
     font-weight: 700;
     word-wrap: break-word;

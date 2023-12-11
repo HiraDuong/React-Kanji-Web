@@ -1,0 +1,85 @@
+.header-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.title-container{
+    text-align: left;
+    width: 100%;
+    color: #3B82F6;
+font-family: Inter;
+font-size: 44px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-left: 40px;
+}
+.info-container{
+    display: flex;
+    margin-left: 40px;
+}
+
+.image-container-prg>img{
+    height: 200px;
+    width: 300px;
+}
+
+.description-container{
+
+width: 600px;
+margin-right: 40px;
+}
+
+.description-container>div{
+    text-align: left;
+    padding-left: 20px;
+
+}
+.text{
+    color: #3B82F6;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 40px;
+}
+
+.description--{
+    color: #3B82F6;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 16px;
+border: 1px solid rgba(0, 126, 197, 0.10);
+background: rgba(0, 126, 197, 0.20);
+height: 160px;
+}
+
+.progress-title{
+    color: #3B82F6;
+font-family: Inter;
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-align: left;
+}
+
+.progress-btn-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+}
+.progress-btn{
+    border-radius: 16px;
+border: 1px solid #3B82F6;
+background: #3B82F6;
+width: 200px;
+height: 40px;
+margin-left: 40px;
+cursor: pointer;
+}

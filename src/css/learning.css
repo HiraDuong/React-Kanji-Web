@@ -11,3 +11,24 @@
 .btn-container .RememberButton{
     margin: 20px;
 }
+
+.go-to-practice{
+    height:40px;
+    font-size: 20px;
+    color: white;
+    background-color: #3B82F6;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    
+}
+
+.visible {
+    display: block;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  

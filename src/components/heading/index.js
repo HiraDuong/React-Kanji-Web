@@ -9,9 +9,10 @@ function Heading() {
   };
   return (
     <div className="navBar">
-      <div className="navBarChild">
+      <a href='/' className="navBarChild"><div className="navBarChild">
       <b className="card">KANJI CARD</b>
       </div>
+      </a>
       <div className="searchBarContainer">
         <SearchBar onSearch={handleSearch} />
       </div>

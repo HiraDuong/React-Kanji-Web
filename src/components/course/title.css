@@ -1,3 +1,9 @@
 .title{
     margin: 20px;
+
+    color: #3B82F6;
+    font-size: 44px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
 }

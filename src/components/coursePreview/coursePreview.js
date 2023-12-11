@@ -1,18 +1,18 @@
 import './coursePreview.css';  // Assuming that 'coursePreview.css' is in the same directory as your component
 
-function CoursePreview({ name, description,image }) {
+function CoursePreview({ course }) {
   return (
-    <a href={`./learning/${name}`}>
+    <a href={`/courseProgress/${course.name}`}>
     <div className='container'>
       <div className='course-img'>
-       <img className='image' src={image} alt="" />
+       <img className='image' src={course.image} alt="" />
         {/* Your image rendering logic */}
       </div>
       <div className='name'>
-        {name}
+        {course.name}
       </div>
       <div className='description'>
-        {description}
+        {course.description}
       </div>
     </div>
     </a>

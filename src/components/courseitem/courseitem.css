@@ -17,4 +17,24 @@
 #name{
     color: white;
     font-weight: 700;
+    text-align: left;
+
+}
+#deciption{
+    text-align: left;
+    
+}
+.text-container{
+    width: 600px;
+    margin-left: 20px;
+}
+
+.open-btn{
+    width: 60px;
+    height: 40px;
+    background-color: #3B82F6;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
 }

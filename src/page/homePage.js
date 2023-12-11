@@ -47,9 +47,7 @@ function HomePage() {
         {firstCourses.map(course => (
         <CoursePreview
           key={course.name}  // Make sure to use a unique key for each CourseItem
-          name={course.name}
-          image={course.image}
-          description={course.decription}
+          course={course}
         />
       ))}
         </div>
@@ -57,9 +55,7 @@ function HomePage() {
         {secondCourses.map(course => (
         <CoursePreview
           key={course.name}  // Make sure to use a unique key for each CourseItem
-          name={course.name}
-          description={course.decription}
-          image={course.image}
+          course={course}
         />
       ))}
         </div>

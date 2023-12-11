@@ -1,16 +1,20 @@
+import RememberButton from '../course/Button'
+
 import './courseitem.css'
-function CourseItem({name,decription,image}){
+function CourseItem({course}){
 
     return(
         <div className="course-item">
             <div id='course-image'>
-               <img src = {image}/> 
+               <img src = {course.image}/> 
             </div>
-            <div>
-                <div id='name'>{name}</div>
-                <div id = 'deciption'>{decription}</div>
+            <div className='text-container'>
+                <div id='name'>{course.name}</div>
+                <div id = 'deciption'>{course.decription}</div>
             </div>
-
+            <a  href={`./courseProgress/${course.name}`}>
+                <button className='open-btn'>Mở</button>
+            </a>
         </div>
     )
 }

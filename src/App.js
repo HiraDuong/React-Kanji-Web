@@ -10,7 +10,7 @@ import CoursePage from './page/coursePage';
 import CourseProgress from './page/courseProgressPage';
 import Learning from './page/learning';
 import Practice from './page/practice';
-
+import KanjiLevelLearning from './page/KanjiLevelLearning.js';
 
 function App() {
   return (
@@ -25,12 +25,25 @@ function App() {
         <Nav/>
    
       <div className='child-page'>
+
       <Routes>
       <Route path="/" element={<HomePage/>} />
         <Route path="/coursePage" element={<CoursePage/>} />
-        <Route path="/courseProgress" element={<CourseProgress/>} />
-        <Route path="/learning" element={<Learning/>} />
-        <Route path="/practice" element={<Practice/>} />
+
+        {/* route for progress */}
+        <Route path="/courseProgress" element={<CourseProgress/>} >
+        <Route path=":level" element={<CourseProgress/>} />
+        </Route>
+
+
+        <Route path="/learning" element={<KanjiLevelLearning />}>
+        {/* Thêm Route con cho các cấp độ kanji */}
+      <Route path=":level" element={<KanjiLevelLearning/>} />
+  </Route>
+  {/* route for practice */}
+        <Route path="/practice" element={<Practice/>} >
+        <Route path=":level" element={<Practice/>} />
+        </Route>
       </Routes>
       </div>
 
