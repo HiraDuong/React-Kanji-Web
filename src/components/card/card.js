@@ -10,9 +10,17 @@ function Card({word}) {
 
   return (
     <div className={`cardContainer ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
-      <div className="card-title">{isFlipped ? word.meaning : word.kanji}</div>
-      <div className="pronunce">{word.pronunce}</div>
-      <div className="subtitle">{isFlipped ? 'BẤM ĐỂ XEM KANJI' : 'BẤM ĐỂ LẬT'}</div>
+      <div className="card-title">{isFlipped ?
+       
+       <div className='back-card'>
+        <img src={word.image}>
+        </img>
+        {word.meaning}
+        </div>
+      : word.kanji}</div>
+     
+     
+      <div className="pronunce">{word.pronounce}</div>
     </div>
   );
 }

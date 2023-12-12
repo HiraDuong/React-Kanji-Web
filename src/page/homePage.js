@@ -1,42 +1,51 @@
+import React, { useState, useEffect } from "react";
+
+
 import CoursePreview from "../components/coursePreview/coursePreview";
 import '../css/homepage.css'
 
-const course = [
-  {
-   name : 'Kanji N5',
-   decription : 'this is for N5 level',
-   image : 'https://i.redd.it/v88lpnp2gok61.png' 
-  },
-  {
-    name : 'Kanji N4',
-    decription : 'this is for N4 level',
-    image : 'https://i.redd.it/v88lpnp2gok61.png' 
-   },
-   {
-    name : 'Kanji N3',
-    decription : 'this is for N3 level',
-    image : 'https://i.redd.it/v88lpnp2gok61.png' 
-   },
-   {
-    name : 'Kanji N2',
-    decription : 'this is for N2 level',
-    image : 'https://i.redd.it/v88lpnp2gok61.png' 
-   },
-   {
-     name : 'Kanji N1',
-     decription : 'this is for N1 level',
-     image : 'https://i.redd.it/v88lpnp2gok61.png' 
-    },
-    {
-     name : 'Kanji Total',
-     decription : 'this is for N5-N1 level',
-     image : 'https://i.redd.it/v88lpnp2gok61.png' 
-    },
-]
+
 
 function HomePage() {
-  const firstCourses = course.slice(0, 3);
-  const secondCourses = course.slice(3, 6);
+
+  // Call API to get all Course
+  const [course, setCourse] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+  
+  
+        const response = await fetch(`http://localhost:5000/api/courses`, {
+          timeout: 5000, // Thời gian chờ tối đa là 5 giây, bạn có thể điều chỉnh giá trị này
+        });
+  
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+  
+        const data = await response.json();
+  
+       
+  
+        if (data) {
+          setCourse(data);
+        }
+      } catch (error) {
+        console.error("Error fetching course data:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
+  var firstCourses=[]
+  var secondCourses=[]
+  if(course){
+     firstCourses = course.slice(0, 3);
+     secondCourses = course.slice(3, 6);
+  }
+
 
     return (
       <div className="page">

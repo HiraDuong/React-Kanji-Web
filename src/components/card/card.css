@@ -3,13 +3,13 @@
 .cardContainer {
     width: 600px;
     height: 300px;
-
+    justify-content: center;
     background: rgba(0, 125.80, 196.56, 0.20);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 16px;
     overflow: hidden;
     border: 1px rgba(0, 125.80, 196.56, 0.10) solid;
-
+    cursor: pointer;
     flex-direction: column;
  
     align-items: center;
@@ -34,10 +34,17 @@
     font-weight: 150;
     word-wrap: break-word;
   }
-  .subtitle {
-    font-size: 40px;
-    font-family: 'Inter';
-    font-weight: 700;
-    word-wrap: break-word;
+
+  .back-card>img{
+    height: 100px;
+    width: 200px;
   }
-  
+  .back-card{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    font-size: 40px;
+    padding-bottom: 5px;
+    color: rgb(8, 128, 233);
+  }
+

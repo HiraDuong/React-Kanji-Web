@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import '../css/PageGlobal.css';
 import '../css/practice.css'
 import CourseTitle from "../components/course/CourseTitle";
@@ -6,7 +7,7 @@ import Counter from "../components/course/counter";
 import Answer from "../components/practice/answer";
 import Question from "../components/practice/question";
 import kanjiLevels from '../data/kanjiLevels';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation,useParams, useNavigate } from 'react-router-dom';
 
 // Di chuyển hàm getRandomElements lên trước hàm createQuizz
 const getRandomElements = (array, numElements) => {
@@ -25,6 +26,14 @@ const shuffleArray = (array) => {
 };
 
 function Practice() {
+
+  const { search } = useLocation();
+
+  const queryParams = new URLSearchParams(search);
+  const courseId = queryParams.get("courseId");
+  const href = `/learning?courseId=${courseId}`;
+
+
   const { level } = useParams();
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -79,7 +88,7 @@ function Practice() {
       <Question quiz={quiz?.quiz || ''} />
       <Answer quizAnswer={quiz?.quizAnswer || []} answer={quiz?.answer || ''} resetAnswerState={resetAnswerState} onResetAnswerState={handleResetAnswerState} />
       <Counter num1={currentIndex + 1} num2={quizzes.length} onDecrement={goToPreviousQuestion} onIncrement={goToNextQuestion} />
-      <a  href={`/learning/${level ||""}`}><button className='back-btn'>
+      <a  href={href}><button className='back-btn'>
         Quay lại khóa học
       </button>
     </a>
