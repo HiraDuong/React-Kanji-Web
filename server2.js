@@ -4,6 +4,10 @@ const config = require('./testBE/config/postgres'); // Đường dẫn có thể
 const wordRoutes = require('./testBE/routes/wordRoutes');
 const courseRoutes = require('./testBE/routes/courseRoutes');
 const wordCourseItemRoutes = require('./testBE/routes/wordCourseItemRoutes');
+const userRoutes = require('./testBE/routes/userRoutes');
+const authRoutes = require('./testBE/routes/authRoutes');
+const userProgressRoutes = require('./testBE/routes/userProgressRoutes');
+
 const app = express();
 const PORT = config.server.port;
 
@@ -31,9 +35,20 @@ const cors = require('cors');
 
 
 app.use(cors());
+app.use(express.json());
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
+
 app.use('/api',wordRoutes);
 app.use('/api', wordCourseItemRoutes);
 app.use('/api', courseRoutes);
+app.use('/api', userRoutes);
+app.use('/api',authRoutes);
+app.use('/api', userProgressRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

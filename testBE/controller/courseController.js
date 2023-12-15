@@ -1,4 +1,8 @@
 const Course = require('../models/courseModel');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
+// Đảm bảo rằng file courseModel xuất ra đối tượng sequelize
 
 // Create a new course
 const createCourse = async (req, res) => {
@@ -51,8 +55,41 @@ const getCourseById = async (req, res) => {
   }
 };
 
+// Search Course By name
+// Trong hàm searchCoursesByName
+const searchCoursesByName = async (req, res) => {
+  try {
+    const searchTerm = req.query.searchTerm;
+    console.log('Search Term:', searchTerm);
+
+    const courses = await Course.findAll({
+      where: {
+        course_name: {
+          [Op.iLike]: `%${searchTerm}%`,
+          
+        },
+      },
+    });
+
+
+    if (!courses || courses.length === 0) {
+      return res.status(404).json({ error: 'No courses found' });
+    }
+
+    res.status(200).json(courses);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
 module.exports = {
   createCourse,
   getAllCourses,
-  getCourseById
+  getCourseById,
+  searchCoursesByName,
 };
+
+

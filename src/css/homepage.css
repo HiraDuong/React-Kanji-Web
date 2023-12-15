@@ -1,9 +1,8 @@
 .col{
     display: flex;
+    flex-direction: column;
 }
 
-.image-container>img{
+#home-background{
     width: 100%;
-    margin-right:20px ;
-    height: 400px;
 }

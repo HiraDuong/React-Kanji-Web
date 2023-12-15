@@ -7,11 +7,16 @@ import RememberButton from "../components/course/Button";
 import Card from "../components/card/card";
 import Counter from "../components/course/counter";
 import { useLocation } from "react-router-dom";
+import PageNotFound from "./PageNotFound";
+import { useUser } from "../UserContext";
+import RequireLoginInfo from "./RequireLoginInfo";
 
 function Learning() {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
+
   const courseId = queryParams.get("courseId");
+  const { user } = useUser();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [forgot, setForgot] = useState([]);
@@ -89,8 +94,7 @@ function Learning() {
   
   // word theo khóa học
   const { words } = cardAPIData;
-  console.log('course', course?.[0]?.course_name);
-  console.log('words', words);
+
 
   useEffect(() => {
     // console.log('Remember:', remember);
@@ -136,12 +140,51 @@ function Learning() {
 
   // cái Remember và Forgot bên backEnd
 
-  const handleRemember = () => {
+  
+
+  let handleRemember = async () => {
     handleRememberOrForgot(true);
+    // call API
+    try {
+      await fetch(`http://localhost:5000/api/userProgress/Remember/uc/${user.userId}/${courseId}/${words[currentIndex].word_id}/remember`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+      // Handle success as needed
+    } catch (error) {
+      console.error('Error updating remember status', error);
+      // Handle error as needed
+    }
+
+
   };
 
-  const handleForgot = () => {
+  let handleForgot = () => {
     handleRememberOrForgot(false);
+    
+      // call API
+      try {
+         fetch(`http://localhost:5000/api/userProgress/Remember/uc/${user.userId}/${courseId}/${words[currentIndex].word_id}/not-remember`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(response => response.json())
+          .then(data => console.log(data))
+          .catch(error => console.error('Error:', error));
+        // Handle success as needed
+      } catch (error) {
+        console.error('Error updating remember status', error);
+        // Handle error as needed
+      }
+  
+
   };
 
   // Hàm xử lý khi chuyển tới trang luyện tập
@@ -151,7 +194,14 @@ function Learning() {
     navigate(href);
     // Ví dụ chuyển trang sử dụng hook useNavigate
   };
-
+  if(user == null){
+    return <RequireLoginInfo/>
+  }
+else
+  if (courseId === null) {
+    return <PageNotFound />;
+  }  
+  else
   return (
     <div className="page">
       <CourseTitle title={course?.[0]?.course_name} />

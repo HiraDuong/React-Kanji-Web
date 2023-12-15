@@ -1,0 +1,13 @@
+#go-to-login-btn{
+ 
+padding: 16px 32px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex-shrink: 0;
+cursor: pointer;
+border-radius: 16px;
+border: 1px solid #3B82F6;
+background: #3B82F6;
+color: white;
+}

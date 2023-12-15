@@ -1,50 +1,34 @@
-import { useParams } from "react-router-dom";
-import { useState,useEffect  } from "react";
+import React, { useState } from 'react';
+import SearchCourse from "../components/searchcourse/SearchCourse";
+import CourseItem from '../components/courseitem/courseitem';
+import ProgressWord from '../components/progressWord/ProgressWord';
 
-import '../css/testAPI.css'
-const TestAPI = ()=>{
-    const { level } = useParams();
-    const [courseData, setCourseData] = useState(null);
+const TestAPI = () => {
+  const course = {
+    course_id : 5,
+    course_name : 'Kanji N5',
+    description : 'this is for N5 level',
+     course_image : 'https://i.redd.it/v88lpnp2gok61.png' 
+  }
 
-    // CALL API
+  const exampleWord = {
+    word_id:1,
+    kanji: '漢字',
+    meaning: 'Chinese characters',
+    pronounce: 'Kanji',
+    image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv9yx3AncOfdCVaPHU9s1NnUN2Zp7Wcpmx1g&usqp=CAU'
 
-    useEffect(() => {
-        // Gọi API để lấy thông tin về khóa học dựa trên level
-        fetch(`http://localhost:4000/api/courses/name/${level || "Kanji Total"}`)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then((data) => setCourseData(data))
-          .catch((error) => console.error("Error fetching course data:", error));
-      }, [level]);
-      
-      console.log(courseData)
+  };
 
-    return(
-<div className="page">
-      <h2>{level} Course</h2>
-      {courseData ? (
-        <div>
-          <p>Name: {courseData.name}</p>
-          <p>Description: {courseData.description}</p>
-          {/* Hiển thị các từ vựng, ví dụ: */}
-          <ul className="list">
-            {courseData.word.map((word) => (
-              <li key={word.kanji}>
-                {word.kanji} - {word.meaning}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
   
-    )
-}
+  
 
-export default TestAPI
+  return (
+    <div className="page">
+   
+          <ProgressWord key={exampleWord.word_id} word={exampleWord} />
+    </div>
+  );
+};
+
+export default TestAPI;

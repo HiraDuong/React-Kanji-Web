@@ -2,21 +2,19 @@ import './ProgressWord.css';
 
 const ProgressWord = ({ word }) => {
   return (
-    <div className='word-container'>
-      <div className='info-container'>
-        <div className='title'>
+    <div id='word-container'>
+        <div id='title'>
           {word.kanji}
         </div>
-        <div className='meaning'>
-          {word.meaning}
+      <div id='word-info-container'>
+        <div id='meaning'>
+           Meaning: {word.meaning}
         </div>
-        <div className='pronunce'>
-          {word.pronunce}
+        <div id='pronunce'>
+          Pronounce: {word.pronounce}
         </div>
       </div>
-      <div className='image-container-prg-word'>
-        <img src={word.image} alt={`Image for ${word.kanji}`} />
-      </div>
+        <img id='image-container' src={word.image} alt={`Image for ${word.kanji}`} />
     </div>
   );
 };

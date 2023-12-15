@@ -7,12 +7,12 @@ import TotalKanji from './kanji/kanjiTotal';
 // Import các file kanji khác nếu cần
 
 const kanjiLevels = {
-    'Kanji N1':N1Kanji,
-    'Kanji N2':N2Kanji,
-    'Kanji N3': N3Kanji,
-    'Kanji N4': N4Kanji,
-    'Kanji N5': N5Kanji,
-    'Kanji Total': TotalKanji
+    '1':N1Kanji,
+    '2':N2Kanji,
+    '3': N3Kanji,
+    '4': N4Kanji,
+    '5': N5Kanji,
+    '6': TotalKanji
   // Thêm các cấp độ khác nếu cần
 };
 

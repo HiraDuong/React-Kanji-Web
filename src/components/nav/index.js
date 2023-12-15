@@ -1,23 +1,33 @@
+import { Link } from 'react-router-dom'
 import './nav.css'
+import { useUser } from '../../UserContext'
+import PageNotFound from '../../page/PageNotFound';
 function Nav(){
-    return(
+  const {user} = useUser()
+  if (user === null) {
+    return (
+      <div></div>
+    )
+  }   
+  else 
+  return(
         
 <nav>
         <ul>
           <li>
-            <a href='/'>Home</a>
+            <Link to='/'>Home</Link>
           </li>
           <li>
-            <a href='/coursePage'>Course</a>
+            <Link to='/coursePage'>Course</Link>
           </li>
           <li>
-            <a href='/courseProgress'>Course Progress</a>
+            <Link to='/courseProgress'>Course Progress</Link>
           </li>
           <li>
-            <a href='/learning'>Learning</a>
+            <Link to='/learning'>Learning</Link>
           </li>
           <li>
-            <a href='/practice'>Pratice</a>
+            <Link to='/practice'>Pratice</Link>
           </li>
         </ul>
       </nav>

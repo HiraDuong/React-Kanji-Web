@@ -1,9 +1,10 @@
-.header-container{
+#header-container{
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
-.title-container{
+#title-container{
     text-align: left;
     width: 100%;
     color: #3B82F6;
@@ -14,38 +15,35 @@ font-weight: 700;
 line-height: normal;
 margin-left: 40px;
 }
-.info-container{
+#info-container{
+    width: 100%;
     display: flex;
-    margin-left: 40px;
+    gap: 40px;
+    height: 400px;
+text-align: left;
 }
 
-.image-container-prg>img{
-    height: 200px;
-    width: 300px;
+#image-container-prg{
+    width:  400px;
 }
 
-.description-container{
-
-width: 600px;
-margin-right: 40px;
+#description-container{
+width: 400px;
 }
 
-.description-container>div{
-    text-align: left;
-    padding-left: 20px;
 
-}
-.text{
+#text{
     color: #3B82F6;
     font-family: Inter;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    height: 40px;
+    height: 30px;
 }
 
-.description--{
+.progress-course-description{
+    width: 100%;
     color: #3B82F6;
     font-family: Inter;
     font-size: 24px;
@@ -55,7 +53,8 @@ margin-right: 40px;
     border-radius: 16px;
 border: 1px solid rgba(0, 126, 197, 0.10);
 background: rgba(0, 126, 197, 0.20);
-height: 160px;
+height: 100px;
+padding-left: 10px;
 }
 
 .progress-title{
@@ -65,14 +64,15 @@ font-size: 36px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
-text-align: left;
+
 }
 
-.progress-btn-container{
+#progress-btn-container{
     display: flex;
     width: 100%;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
+    gap: 420px;
 }
 .progress-btn{
     border-radius: 16px;
@@ -82,4 +82,38 @@ width: 200px;
 height: 40px;
 margin-left: 40px;
 cursor: pointer;
+color: white;
+align-items: center;
+display: flex;
+justify-content: center;
+color: #F8FAFC;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+}
+
+#remember-container{
+border: 2px solid #3B82F6;
+
+}
+
+#forgot-container{
+    border: 2px solid #f7821b;
+    
+    }
+    
+.progress-word-container{
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.chart-container{
+    height: 400px;
 }

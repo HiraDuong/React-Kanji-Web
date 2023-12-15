@@ -11,4 +11,8 @@ router.get('/courses', courseController.getAllCourses);
 //  get by id
 router.get('/courses/courseId/:id', courseController.getCourseById);
 
+// search course by name 
+
+router.get('/courses/search', courseController.searchCoursesByName); // Sửa đường dẫn và dấu nháy đơn
+
 module.exports = router;

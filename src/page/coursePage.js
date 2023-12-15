@@ -1,56 +1,35 @@
 import React, { useState, useEffect } from "react";
 
 import CourseItem from "../components/courseitem/courseitem";
+import SearchCourse from "../components/searchcourse/SearchCourse";
 
+import '../css/CoursePage.css'
 
 function CoursePage() {
-//  CALL API
-const [courses, setCourse] = useState(null);
-
-useEffect(() => {
-  const fetchData = async () => {
-    try {
 
 
-      const response = await fetch(`http://localhost:5000/api/courses`, {
-        timeout: 5000, // Thời gian chờ tối đa là 5 giây, bạn có thể điều chỉnh giá trị này
-      });
+  const [searchResults, setSearchResults] = useState([]);
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-
-     
-
-      if (data) {
-        setCourse(data);
-      }
-    } catch (error) {
-      console.error("Error fetching course data:", error);
-    }
+  // Hàm này sẽ nhận dữ liệu từ SearchCourse và cập nhật kết quả tìm kiếm
+  const handleSearchResults = (results) => {
+    setSearchResults(results);
   };
 
-  fetchData();
-}, []);
-
-var course =[]
-if(courses){
-   course = courses
-}
-    return (
-      <div className="page">
-       {course.map(course => (
-        <CourseItem
-          key={course.course_id}  // Make sure to use a unique key for each CourseItem
-          course={course}
-        />
-      ))}
-        {/* <CourseItem name={'Kanji N5'} decription={'kanji n5'} image = 'https://i.redd.it/v88lpnp2gok61.png'/> */}
+  return (
+    <div id="coursePage" className="page">
+      {/* Truyền hàm handleSearchResults qua SearchCourse */}
+      <SearchCourse onSearchResults={handleSearchResults} />
+      <div id="search-results-title">Danh sách khóa học:</div>
+      {/* Hiển thị kết quả tìm kiếm */}
+      <div id="search-results">
+        {searchResults.map((course) => (
+          // Render mỗi CourseItem với dữ liệu của mỗi khóa học từ kết quả tìm kiếm
+          <CourseItem key={course.course_id} course={course} />
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
+}
   
   export default CoursePage;
   

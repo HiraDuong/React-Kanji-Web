@@ -4,9 +4,15 @@ import React, { useState, useEffect } from "react";
 import CoursePreview from "../components/coursePreview/coursePreview";
 import '../css/homepage.css'
 
+import { useUser } from '../UserContext';
 
 
 function HomePage() {
+
+
+  const { user } = useUser();
+
+
 
   // Call API to get all Course
   const [course, setCourse] = useState(null);
@@ -48,22 +54,21 @@ function HomePage() {
 
 
     return (
-      <div className="page">
-        <div className="image-container">
-        <img src="https://s3-alpha-sig.figma.com/img/2e61/496d/5e185e55312c5217ce33a304fda6106e?Expires=1702857600&Signature=btogyWoZLameNFfadYb6K3pjegir59dKUU4~OfGaU-Crg6Z7D5OXPO9Tc4U-FMuo85KSiqa4c5Z8dUt~Hs93W7fCVpln1qc7F2veKkrWAw89ROydBpmg2WdZZctp5XbAH5tvQFHM-S78vT6UMPKieP88RN9iCF-P9DeRD3KTd4ig50RTyebl42KE7J~TCcixn-dy~t3i0UUvRE2xql7LQ8JyY4uQlkBHrJhm1hQlSaXn9mM5MwmguCqrUjO7TXH538czZ-r25s~UpX0QH~myzXCtPH7-sy6rOEKsr0vR7dJnim5A~nZptsatknTdZd5~CBkvGPL0oaIpdp7HvKsYPA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt="Home" />
-        </div>
-        <div className="col">
+      <div style={{width:'100%'}}>
+        <img id="home-background" src='image/home.png' alt="Home" />
+        <div className="row">
         {firstCourses.map(course => (
         <CoursePreview
-          key={course.name}  // Make sure to use a unique key for each CourseItem
+          key={course.course_id}  // Make sure to use a unique key for each CourseItem
           course={course}
+          
         />
       ))}
         </div>
-        <div className="col">
+        <div className="row">
         {secondCourses.map(course => (
         <CoursePreview
-          key={course.name}  // Make sure to use a unique key for each CourseItem
+          key={course.course_id}  // Make sure to use a unique key for each CourseItem
           course={course}
         />
       ))}
