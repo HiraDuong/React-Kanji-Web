@@ -9,6 +9,7 @@ import Question from "../components/practice/question";
 import kanjiLevels from '../data/kanjiLevels';
 import { useLocation,useParams, useNavigate, Link } from 'react-router-dom';
 import PageNotFound from './PageNotFound';
+import APIpath from '../config/APIpath';
 
 // Di chuyển hàm getRandomElements lên trước hàm createQuizz
 const getRandomElements = (array, numElements) => {
@@ -33,21 +34,37 @@ function Practice() {
   const queryParams = new URLSearchParams(search);
   const courseId = queryParams.get("courseId");
   const href = `/learning?courseId=${courseId}`;
-
-
-  
-  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
   const [resetAnswerState, setResetAnswerState] = useState(false);
   const [quizzes, setQuizzes] = useState([]);
-
+  const [courseName,setCourseName] = useState('')
+ 
+  // GET QUIZZES
   useEffect(() => {
-    const cardData = kanjiLevels[courseId || 'Kanji Total'] || [];
-    const newQuizzes = createQuizz(cardData);
-    setQuizzes(newQuizzes);
-  }, [courseId, currentIndex]);
+    const getQuizzes = async () => {
+      try {
+        const response = await fetch(`${APIpath}api/quizzes/${courseId}`);
+        const data = await response.json();
+        setCourseName(data.courseName)
+     
 
-  const quiz = quizzes[currentIndex];
+        const shuffledQuizzes = data.Quizz.map((quizz) => ({
+          quizz: quizz.quizz,
+          answer: shuffleArray([...quizz.answer]),
+          correctAnswer : quizz.correctAnswer
+        }));
+        setQuizzes(shuffledQuizzes);
+
+      } catch (error) {
+        console.error('Error fetching quizzes', error);
+      }
+    };
+
+    getQuizzes();
+  }, [courseId]);
+
+  const quizz = quizzes[currentIndex];
 
   const goToNextQuestion = () => {
     setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, quizzes.length - 1));
@@ -63,25 +80,8 @@ function Practice() {
     setResetAnswerState(false);
   };
 
-  // Hàm createQuizz sử dụng getRandomElements, vì vậy di chuyển nó lên trước createQuizz
-  const createQuizz = (cardData) => {
-    const quizzes = cardData.map((card) => {
-      const correctAnswer = card.meaning;
-      const incorrectAnswers = cardData
-        .filter((c) => c.meaning !== correctAnswer)
-        .map((c) => c.meaning);
-      const randomIncorrectAnswers = getRandomElements(incorrectAnswers, 3);
-      const quizAnswer = shuffleArray([correctAnswer, ...randomIncorrectAnswers]);
-
-      return {
-        quiz: card.kanji,
-        quizAnswer,
-        answer: correctAnswer,
-      };
-    });
-
-    return quizzes;
-  };
+  
+  
 
   if (courseId === null) {
     return <PageNotFound />;
@@ -89,9 +89,9 @@ function Practice() {
 
   return (
     <div className="page">
-      <CourseTitle title={courseId ||"Total Kanji"} />
-      <Question quiz={quiz?.quiz || ''} />
-      <Answer quizAnswer={quiz?.quizAnswer || []} answer={quiz?.answer || ''} resetAnswerState={resetAnswerState} onResetAnswerState={handleResetAnswerState} />
+      <CourseTitle title={courseName ||""} />
+      <Question quizz={quizz?.quizz || ''} />
+      <Answer quizAnswer={quizz?.answer || []} answer={quizz?.correctAnswer || ''} resetAnswerState={resetAnswerState} onResetAnswerState={handleResetAnswerState} />
       <Counter num1={currentIndex + 1} num2={quizzes.length} onDecrement={goToPreviousQuestion} onIncrement={goToNextQuestion} />
       <Link to={href}><button className='back-btn'>
         Quay lại khóa học

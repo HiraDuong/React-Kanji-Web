@@ -25,6 +25,7 @@ import Register from "./page/register.js";
 import { useUser } from './UserContext.js';
 import Footer from "./components/footer/Footer.js";
 import Settings from "./page/Settings.js";
+import CreateCoursePage from "./page/CreateCourse.js";
 
 function App() {
   const { search } = useLocation();
@@ -34,18 +35,19 @@ function App() {
   const { user } = useUser();
   
   const bodyPageStyle = {
-    top: user === null ? '60px ' : '120px ',
+    marginTop: user === null ? '60px' : '120px',
   };
+  
 
 
   return (
     <div className="App">
-      <div className="header-container">
+      <div className="app-header-container">
         <Heading />
-      </div>
-      <div id="appNavBar">
       <Nav />
+
       </div>
+      
       <div id="body-page"  style={bodyPageStyle}>
         
         <Routes>
@@ -65,8 +67,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           {/* Setting */}
           <Route path="/settings" element={<Settings />} />
-
-
+          {/* Create Course (only for Admin) */}
+          <Route path="/admin/create-course" element = {<CreateCoursePage/>}/>
 
           {/* route for test API */}
           <Route path="/testAPI" element={<TestAPI />}>
@@ -75,9 +77,8 @@ function App() {
           <Route path="/test" element={<Learn />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-        <Footer/>
-      
       </div>
+      <Footer/>
 
 
     </div>

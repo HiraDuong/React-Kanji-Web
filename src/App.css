@@ -37,6 +37,13 @@
   }
 }
 
+
+.app-header-container{
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  top:0px;
+}
 /* body */
 
 #body-page{
@@ -44,16 +51,7 @@
   flex-direction: column;
   height: 100%;
  align-items: center;
- position: absolute;
  width: 100%;
-
 }
 
-#appNavBar{
-  position: fixed;
-  z-index: 6;
-  top: 60px;
-  width: 100%;
-  background-color: #282c34;
-}
 

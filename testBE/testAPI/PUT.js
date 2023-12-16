@@ -1,13 +1,11 @@
 const data = {
-    username: "newUser",
-    password: "newPassword",
-    name: "New User",
+    // password: "newPassword",
+    name: 'New User 222',
     age: 25,
-    email: "newuser@example.com",
-    role: 1
+    email: 'newuser3@example.com',
   };
   
-  fetch('http://localhost:5000/api/userProgress/Remember/uc/1/2/45/remember', {
+  fetch('http://localhost:5000/api/users/27', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

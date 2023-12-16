@@ -31,6 +31,12 @@ const getWordById = async (req, res) => {
    
   };
   
+
+  // search words 
+  const searchWords = async(req,res) =>{
+    
+  } 
+
   module.exports = {
     getAllWords,
     getWordById,

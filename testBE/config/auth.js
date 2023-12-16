@@ -5,7 +5,7 @@ const secretKey = 'ditmechungmay';
 
 // Tạo token từ user object
 const generateToken = (user) => {
-  const token = jwt.sign({ userId: user.user_id, username: user.username,avt :user.avt }, secretKey, { expiresIn: '1h' });
+  const token = jwt.sign({ userId: user.user_id,name:user.name ,username: user.username,avt :user.avt ,role: user.role}, secretKey, { expiresIn: '1h' });
   return token;
 };
 

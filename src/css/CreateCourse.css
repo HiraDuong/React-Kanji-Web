@@ -1,0 +1,62 @@
+
+.create-course-header
+{
+width: 500px;
+    display: flex;
+padding: 16px 32px;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+    color:#3B82F6; ;
+}
+
+.create-course-header>input{
+    background: rgba(0, 126, 197, 0.20);
+    border-radius: 16px;
+    border: 1px solid #60A5FA;
+   
+}
+.create-course-img{
+    width: 500px;
+    border-radius: 20px;
+}
+.create-word-btn{
+    color: white;
+    display: flex;
+width: 250px;
+height: 40px;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+flex-shrink: 0;
+border-radius: 16px;
+border: 1px solid #3B82F6;
+background: #3B82F6;
+cursor: pointer;
+font-weight: 600;
+
+}
+
+.word-search-results{
+    height: 600px;
+}
+
+
+.create-course-submit-btn-container{
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+.create-course-submit-btn-container>button{
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #3B82F6;
+    width: 400px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 600;
+}

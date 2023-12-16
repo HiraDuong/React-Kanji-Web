@@ -17,10 +17,14 @@ const CourseModel = sequelize.define('course', {
   course_image: {
     type: DataTypes.STRING,
   },
+  create_by: {
+    type: DataTypes.STRING, // Kiểu dữ liệu string
+    defaultValue: 'admin', // Giá trị mặc định là 'admin'
+  },
 }
 ,
 {
-    timestamps: false, // Tắt sử dụng "createdAt" và "updatedAt"
+    timestamps: true,
   });
 
 module.exports = CourseModel;

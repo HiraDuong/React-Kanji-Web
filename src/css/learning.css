@@ -13,22 +13,68 @@
 }
 
 .go-to-practice{
-    height:40px;
+    height: 450px;
+    width: 600px;
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 30px;
+    position: absolute;
+    color: rgb(0, 6, 6);
+}
+.nagivate-button{
+    background-color: #9ab0d4;
+    height: 40px;
+    width: 300px;
     font-size: 20px;
     color: white;
-    background-color: #3B82F6;
     border: none;
     border-radius: 15px;
     padding: 10px;
     cursor: pointer;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
 }
 
 .visible {
-    display: block;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+
   }
   
   .hidden {
     display: none;
   }
+  
+  .congrats-icon{
+        width:200px ;
+        animation: fireworks 2s infinite;
+  }
+  .congrats-animation {
+    animation: slideIn 1s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fireworks {
+    0% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-100px) rotate(45deg); }
+    50% { transform: translateY(0) rotate(0); }
+    75% { transform: translateY(-100px) rotate(-45deg); }
+    100% { transform: translateY(0) rotate(0); }
+  }
+
+  
+  
   

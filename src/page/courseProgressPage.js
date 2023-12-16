@@ -68,7 +68,6 @@ useEffect(() => {
       }
 
       const data = await response.json();
-      console.log("data word",data)
       if (data) {
         setWords(data);
       }
@@ -141,8 +140,14 @@ useEffect(() => {
   const rememberWordLength = remember.length
   const notRememberWordLength = notRemember.length
 
+// change course createdDate format 
 
-   if(user == null){
+const date = new Date(course.createdAt);
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = date.toLocaleDateString('vi-VN', options);
+
+
+  if(user == null){
     return <RequireLoginInfo/>
   }
   else
@@ -166,11 +171,11 @@ useEffect(() => {
             </div>
             <div id='text'>Tác giả:</div>
             <div className='progress-course-description'>
-              {course.description}
+              {course.create_by}
             </div>
             <div id='text'>Ngày tạo:</div>
             <div className='progress-course-description'>
-              {course.description}
+              {formattedDate}
             </div>
           </div>
           <img id='image-container-prg' 

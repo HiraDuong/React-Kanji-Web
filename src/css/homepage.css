@@ -6,3 +6,7 @@
 #home-background{
     width: 100%;
 }
+
+#course-preview-list{
+    overflow-x: auto;
+}

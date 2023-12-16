@@ -11,7 +11,6 @@ function Heading() {
   const logout = useUser();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const toggleDropdown = () => {
-    console.log("TEST user", user);
     setIsDropdownVisible(!isDropdownVisible);
   };
 
@@ -19,6 +18,8 @@ function Heading() {
     setIsDropdownVisible(false);
   };
 
+
+  
   const handleSearch = (searchTerm) => {
     // Xử lý tìm kiếm // gọi API các thứ
     console.log("Searching for:", searchTerm);
@@ -29,7 +30,7 @@ function Heading() {
         <Link to="/" className="navBarChild">
           <b className="card">KANJI CARD</b>
         </Link>
-        <div id="usernameWelcome">Xin chào {user?.username||[]}</div>
+        <div id="usernameWelcome">Xin chào {user?.name||[]}</div>
         
         {user ? (
           <button id="avt-container" onClick={toggleDropdown}>

@@ -23,6 +23,7 @@ const getUserById = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 // createUser
 const createUser = async (req, res) => {
   const { username, password, name, age, email, role } = req.body;
@@ -54,17 +55,41 @@ const createUser = async (req, res) => {
 const updateUserById = async (req, res) => {
   const { userId } = req.params;
   const { username, password, name, age, email, role } = req.body;
+
+  // Lọc ra các trường không rỗng
+  const nonEmptyFields = {
+    ...(username && { username }),
+    ...(password && { password }),
+    ...(name && { name }),
+    ...(age && { age }),
+    ...(email && { email }),
+    ...(role && { role }),
+  };
+  const checkEmail = await AppUser.findOne(
+    {
+      where:{
+        email:email
+      }
+    }
+  )
+  if(checkEmail){
+    return res.status(409).json({ error: 'Email was used' });
+  }
+  else
   try {
     const user = await AppUser.findByPk(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-    await user.update({ username, password, name, age, email, role });
+    // Update chỉ các trường không rỗng
+    await user.update(nonEmptyFields);
+
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 // Delete user by ID
 const deleteUserById = async (req, res) => {

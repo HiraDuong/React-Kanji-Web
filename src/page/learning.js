@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "../css/PageGlobal.css";
 import "../css/learning.css";
 import CourseTitle from "../components/course/CourseTitle";
@@ -226,13 +226,19 @@ else
         onDecrement={handlePrevCard}
         onIncrement={handleNextCard}
       />
+  <div className={`go-to-practice ${isFinished ? "visible congrats-animation" : "hidden"}`}>
+  CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI HỌC
+  <Link className="nagivate-button" to={href}>
+    Chuyển tới trang luyện tập
+  </Link>
+  HOẶC
+  <Link className="nagivate-button" to={'/course'}>
+    Quay lại trang khóa học
+  </Link>
+  <img className="congrats-icon" src="/image/congrats_icon.png" />
+</div>
 
-      <button
-        className={`go-to-practice ${isFinished ? "visible" : "hidden"}`}
-        onClick={handleGoToPractice}
-      >
-        Chuyển tới trang luyện tập
-      </button>
+     
     </div>
   );
 }

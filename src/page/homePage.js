@@ -5,6 +5,7 @@ import CoursePreview from "../components/coursePreview/coursePreview";
 import '../css/homepage.css'
 
 import { useUser } from '../UserContext';
+import SearchCourse from "../components/searchcourse/SearchCourse";
 
 
 function HomePage() {
@@ -51,11 +52,13 @@ function HomePage() {
      firstCourses = course.slice(0, 3);
      secondCourses = course.slice(3, 6);
   }
-
+  
 
     return (
       <div style={{width:'100%'}}>
         <img id="home-background" src='image/home.png' alt="Home" />
+
+
         <div className="row">
         {firstCourses.map(course => (
         <CoursePreview

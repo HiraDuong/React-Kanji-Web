@@ -5,6 +5,9 @@ nav {
     width: 100%;
     background-color: #333; /* Màu nền navbar */
     display: flex;
+    /* position: fixed; */
+    /* z-index: 6; */
+    top: 60px;
   }
   
   ul {
