@@ -16,8 +16,14 @@ npm start
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Compile contract
 
 ```sh
-npm run build
+npm run compile
+```
+
+### Deploy contract
+
+```sh
+npm run deploy
 ```
