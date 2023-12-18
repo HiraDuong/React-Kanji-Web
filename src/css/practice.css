@@ -9,3 +9,23 @@
     cursor: pointer;
     
 }
+.congrat-container{
+    background-color: rgba(221, 217, 217, 0.95);
+    position: fixed;
+    padding: 20px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    border-radius: 20px;
+    top: 15%;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.congrat-visible  {
+    filter: blur(5px); /* Làm mờ nền */
+    pointer-events: none; /* Không cho người dùng tương tác với nền đã làm mờ */
+  }
+  

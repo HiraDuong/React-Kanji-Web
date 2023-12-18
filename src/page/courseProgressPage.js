@@ -203,7 +203,11 @@ const formattedDate = date.toLocaleDateString('vi-VN', options);
             THOÁT
          
         </Link>
- 
+        <Link className='progress-btn' to={`/practice?courseId=${courseId}`}>
+            
+            LUYỆN TẬP
+         
+        </Link>
          <Link className='progress-btn' to={href}>
             
               HỌC

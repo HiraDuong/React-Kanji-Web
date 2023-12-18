@@ -37,7 +37,7 @@ function App() {
   const { user } = useUser();
   
   const bodyPageStyle = {
-    marginTop: user === null ? '60px' : '90px',
+    marginTop: user === null ? '40px' : '70px',
   };
   
 

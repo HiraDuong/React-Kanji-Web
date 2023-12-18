@@ -115,20 +115,7 @@ const handleImageUrlChange = (newImageUrl) => {
        <div
        style={{marginBottom:'20px'}}
        >
-        hoặc 
-       <Link 
-       style={{
-        background:'red',
-        padding:'10px 20px',
-        borderRadius:'10px',
-        color:'white',
-        cursor:'pointer',
-        marginLeft: '10px',
-    }}
-    
-       to={'/delete-word'}>
-        Xóa từ
-       </Link>
+ 
        </div>
 
         <div className="row">

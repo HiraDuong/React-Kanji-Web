@@ -42,7 +42,6 @@
   }
   
   .innerText {
-    color: #3B82F6;
     font-size: 28px;
     font-family: 'Inter';
     font-weight: 500;
@@ -60,7 +59,7 @@
 /* Thêm màu nền khi đáp án được chọn */
 /* Màu xanh cho đáp án đúng */
 .correct {
-    background-color: #4caf50; /* Màu xanh lá cây (hoặc màu bạn muốn) */
+    background-color: #4caf4fbc; /* Màu xanh lá cây (hoặc màu bạn muốn) */
     color: #fff; /* Màu chữ trắng (hoặc màu bạn muốn) */
   }
   
@@ -70,7 +69,7 @@
   } 
   /* Màu đỏ cho đáp án sai */
   .incorrect {
-    background-color: #ff0000; /* Màu đỏ (hoặc màu bạn muốn) */
+    background-color: #ed1414bc; /* Màu đỏ (hoặc màu bạn muốn) */
     color: #fff; /* Màu chữ trắng (hoặc màu bạn muốn) */
   }
   .incorrect:hover{
