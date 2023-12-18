@@ -9,7 +9,7 @@ const SearchCourse = ({ onSearchResults }) => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`${APIpath}api/courses/search?searchTerm=${searchTerm}`);
+      const response = await fetch(`${APIpath}courses/search?searchTerm=${searchTerm}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

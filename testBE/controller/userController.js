@@ -54,7 +54,7 @@ const createUser = async (req, res) => {
 // Update user by ID
 const updateUserById = async (req, res) => {
   const { userId } = req.params;
-  const { username, password, name, age, email, role } = req.body;
+  const { username, password, name, age, email, role,avt } = req.body;
 
   // Lọc ra các trường không rỗng
   const nonEmptyFields = {
@@ -64,6 +64,7 @@ const updateUserById = async (req, res) => {
     ...(age && { age }),
     ...(email && { email }),
     ...(role && { role }),
+    ...(avt && { avt }),
   };
   const checkEmail = await AppUser.findOne(
     {

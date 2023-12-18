@@ -1,0 +1,19 @@
+.My-Course-Container{
+    width: 1200px;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+background: #3B82F6;
+white-space: nowrap;
+  
+transition: transform 0.5s ease-in-out;
+
+}
+
+
+  h3{
+    width: 100%;
+    text-align: left;
+    margin-left: 20px;
+  }

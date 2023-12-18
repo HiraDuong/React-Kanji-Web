@@ -3,12 +3,12 @@ import { useParams, useLocation, Link } from 'react-router-dom';
 import ProgressWord from '../components/progressWord/ProgressWord';
 
 import '../css/courseProgress.css';
-import N1Kanji from '../data/kanji/kanjiN1';
 import PageNotFound from './PageNotFound';
 import { useUser } from '../UserContext';
 import RequireLoginInfo from './RequireLoginInfo';
 import Chart from '../components/chart/Chart';
 import MyChart from '../components/chart/Chart';
+import APIpath from "../config/APIpath";
 
 function CourseProgress() {
 
@@ -33,7 +33,7 @@ function CourseProgress() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/courses/courseId/${courseId}`, {
+        const response = await fetch(`${APIpath}courses/courseId/${courseId}`, {
           timeout: 5000,
         });
 
@@ -59,7 +59,7 @@ function CourseProgress() {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/courses/getword/${courseId}`, {
+      const response = await fetch(`${APIpath}courses/getword/${courseId}`, {
         timeout: 5000,
       });
 
@@ -83,7 +83,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/userProgress/Remember/uc/${user.userId}/${courseId}`, {
+        const response = await fetch(`${APIpath}userProgress/Remember/uc/${user.userId}/${courseId}`, {
           timeout: 5000,
         });
 
@@ -107,7 +107,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/userProgress/NotRemember/uc/${user.userId}/${courseId}`, {
+      const response = await fetch(`${APIpath}userProgress/NotRemember/uc/${user.userId}/${courseId}`, {
         timeout: 5000,
       });
 
@@ -171,7 +171,7 @@ const formattedDate = date.toLocaleDateString('vi-VN', options);
             </div>
             <div id='text'>Tác giả:</div>
             <div className='progress-course-description'>
-              {course.create_by}
+            {course.create_by === user.name ? 'Bạn' : course.create_by}
             </div>
             <div id='text'>Ngày tạo:</div>
             <div className='progress-course-description'>
@@ -192,12 +192,18 @@ const formattedDate = date.toLocaleDateString('vi-VN', options);
         
 
         <div id='progress-btn-container'>
-
+        {user.userId === course.created_by_user_id ? (
+  <Link className='progress-btn' to={`/course/update?courseId=${courseId}`} onClick={()=>{
+  }}>
+    Chỉnh sửa
+  </Link>
+) : null}
         <Link className='progress-btn' to='/coursePage'>
             
             THOÁT
          
         </Link>
+ 
          <Link className='progress-btn' to={href}>
             
               HỌC

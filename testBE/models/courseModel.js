@@ -21,6 +21,10 @@ const CourseModel = sequelize.define('course', {
     type: DataTypes.STRING, // Kiểu dữ liệu string
     defaultValue: 'admin', // Giá trị mặc định là 'admin'
   },
+  created_by_user_id: {
+    type: DataTypes.INTEGER, // Kiểu dữ liệu string
+    defaultValue: 2, // Giá trị mặc định là 'admin'
+  },
 }
 ,
 {

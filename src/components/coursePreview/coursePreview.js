@@ -10,7 +10,6 @@ function CoursePreview({ course }) {
   return (
     <Link className="course-preview-container"
     to={href}>
-    <div >
       <div className='course-img'>
        <img className='image' src={course.course_image} alt="" />
         {/* Your image rendering logic */}
@@ -21,7 +20,6 @@ function CoursePreview({ course }) {
       <div className='description'>
         {course.description}
       </div>
-    </div>
     </Link>
 
   );

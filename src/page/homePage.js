@@ -6,6 +6,8 @@ import '../css/homepage.css'
 
 import { useUser } from '../UserContext';
 import SearchCourse from "../components/searchcourse/SearchCourse";
+import APIpath from "../config/APIpath";
+import CoursePreviewList from "../components/CoursePreviewList/CoursePreviewList";
 
 
 function HomePage() {
@@ -16,14 +18,14 @@ function HomePage() {
 
 
   // Call API to get all Course
-  const [course, setCourse] = useState(null);
+  const [course, setCourse] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
   
   
-        const response = await fetch(`http://localhost:5000/api/courses`, {
+        const response = await fetch(`${APIpath}courses`, {
           timeout: 5000, // Thời gian chờ tối đa là 5 giây, bạn có thể điều chỉnh giá trị này
         });
   
@@ -46,36 +48,14 @@ function HomePage() {
     fetchData();
   }, []);
 
-  var firstCourses=[]
-  var secondCourses=[]
-  if(course){
-     firstCourses = course.slice(0, 3);
-     secondCourses = course.slice(3, 6);
-  }
-  
+ 
 
     return (
-      <div style={{width:'100%'}}>
+      <div className="page" style={{width:'100%'}}>
         <img id="home-background" src='image/home.png' alt="Home" />
-
-
-        <div className="row">
-        {firstCourses.map(course => (
-        <CoursePreview
-          key={course.course_id}  // Make sure to use a unique key for each CourseItem
-          course={course}
-          
-        />
-      ))}
-        </div>
-        <div className="row">
-        {secondCourses.map(course => (
-        <CoursePreview
-          key={course.course_id}  // Make sure to use a unique key for each CourseItem
-          course={course}
-        />
-      ))}
-        </div>
+        <h3 style={{marginLeft:'40px'}}>Khóa học đề xuất</h3>
+      <CoursePreviewList  courses={course}/>
+       
       </div>
     );
   }

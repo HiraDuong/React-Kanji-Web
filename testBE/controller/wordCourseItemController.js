@@ -71,8 +71,21 @@ const createQuizz = async (req, res) => {
       // Thêm nghĩa đúng vào mảng
       randomMeanings.push(word.meaning);
 
+      // ///////////
+          // Lấy ngẫu nhiên 3 từ meaning
+          const randomKanji = words
+          .map((w) => w.kanji)
+          .filter((kanji) => kanji !== word.kanji && kanji !== "" && kanji !== undefined && kanji !== null) // Lọc ra nghĩa khác với nghĩa đúng
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+  
+        // Thêm nghĩa đúng vào mảng
+        randomKanji.push(word.kanji);
+
+
       // Xáo trộn lại mảng để đảm bảo nghĩa đúng không ở vị trí cuối cùng
       randomMeanings.sort(() => Math.random() - 0.5);
+      randomKanji.sort(() => Math.random() - 0.5);
 
       const quizzObject = {
         quizz: word.kanji,
@@ -80,7 +93,15 @@ const createQuizz = async (req, res) => {
         correctAnswer : word.meaning
       };
 
+      const quizzObject2={
+        quizz: word.meaning,
+        answer:randomKanji,
+        correctAnswer:word.kanji
+      }
+
       quizzArray.push(quizzObject);
+      quizzArray.push(quizzObject2);
+
     });
 
     // Gửi kết quả về
@@ -93,7 +114,38 @@ const createQuizz = async (req, res) => {
 };
 
 
+// API để thêm các từ vào khóa học
+const addWordsToCourse = async (req, res) => {
+  try {
+    const { course_id, word_ids } = req.body;
+
+    // Kiểm tra xem course_id có tồn tại không
+    // const existingCourse = await Course.findByPk(course_id);
+    // if (!existingCourse) {
+    //   return res.status(404).json({ error: 'Course not found' });
+    // }
+
+    // Lặp qua mảng word_ids và thêm từng từ vào bảng course_word_item
+  
+  
+     for (const word_id of word_ids) {
+       await WordCourseItem.create({
+         courseId : course_id,
+         wordId: word_id,
+       });
+     }
+     
+    console.log("Course",course_id)
+
+    res.status(201).json({ message: 'Words added to the course successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
   getWordsByCourseId,
   createQuizz,
+  addWordsToCourse
 }

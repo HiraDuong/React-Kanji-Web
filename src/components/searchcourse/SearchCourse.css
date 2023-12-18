@@ -1,14 +1,22 @@
 #search-container{
 margin-top: 10px;
 width: 600px;
-height: 40px;
 flex-shrink: 0;
 border-radius: 10px;
 background: rgba(0, 126, 197, 0.10);
-color: rgba(59, 130, 246, 0.61);
+color: rgba(59, 130, 246, 0.61) !important;
 font-family: Montserrat;
 font-size: 20px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
+border: rgba(59, 130, 246, 0.61) 2px solid;
+}
+input::placeholder{
+    outline: none;
+color: rgba(59, 130, 246, 0.61) !important;
+}
+input:focus{
+border: rgba(59, 130, 246, 0.61) 2px solid !important;
+outline: none;
 }

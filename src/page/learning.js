@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
 import { useUser } from "../UserContext";
 import RequireLoginInfo from "./RequireLoginInfo";
+import APIpath from "../config/APIpath";
 
 function Learning() {
   const { search } = useLocation();
@@ -169,7 +170,7 @@ function Learning() {
     
       // call API
       try {
-         fetch(`http://localhost:5000/api/userProgress/Remember/uc/${user.userId}/${courseId}/${words[currentIndex].word_id}/not-remember`, {
+         fetch(`${APIpath}userProgress/Remember/uc/${user.userId}/${courseId}/${words[currentIndex].word_id}/not-remember`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -232,7 +233,7 @@ else
     Chuyển tới trang luyện tập
   </Link>
   HOẶC
-  <Link className="nagivate-button" to={'/course'}>
+  <Link className="nagivate-button" to={'/coursePage'}>
     Quay lại trang khóa học
   </Link>
   <img className="congrats-icon" src="/image/congrats_icon.png" />

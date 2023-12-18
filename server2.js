@@ -1,6 +1,6 @@
 const express = require('express');
-const { Pool } = require('pg');
-const config = require('./testBE/config/postgres'); // Đường dẫn có thể khác tùy vào cấu trúc thư mục của bạn
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const config = require('./testBE/config/postgres');
 const wordRoutes = require('./testBE/routes/wordRoutes');
 const courseRoutes = require('./testBE/routes/courseRoutes');
 const wordCourseItemRoutes = require('./testBE/routes/wordCourseItemRoutes');
@@ -11,44 +11,32 @@ const userProgressRoutes = require('./testBE/routes/userProgressRoutes');
 const app = express();
 const PORT = config.server.port;
 
-const pool = new Pool(config.database);
-// route
-app.get('/', async (req, res) => {
-  try {
-    const client = await pool.connect();
-    console.log('Connected to PostgreSQL');
-
-    const result = await client.query('SELECT $1::text as message', ['Hello, this is your API!']);
-    const message = result.rows[0].message;
-
-    res.send(message);
-
-    client.release();
-  } catch (error) {
-    console.error('Error connecting to PostgreSQL', error);
-    res.status(500).send('Internal Server Error');
-  }
+// Your existing routes
+app.get('/', (req, res) => {
+  res.send('Hello from your API!');
 });
-
 
 const cors = require('cors');
-
-
 app.use(cors());
 app.use(express.json());
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something went wrong!');
-});
 
+app.use('/api', [
+  wordRoutes,
+  wordCourseItemRoutes,
+  courseRoutes,
+  userRoutes,
+  authRoutes,
+  userProgressRoutes,
+]);
 
-app.use('/api',wordRoutes);
-app.use('/api', wordCourseItemRoutes);
-app.use('/api', courseRoutes);
-app.use('/api', userRoutes);
-app.use('/api',authRoutes);
-app.use('/api', userProgressRoutes);
-
+// // Proxy configuration for Imgur
+// app.use('/imgur', createProxyMiddleware({
+//   target: 'https://api.imgur.com',
+//   changeOrigin: true,
+//   headers: {
+//     'Authorization': 'Client-ID d19c7f7884b4f86', // Thay YOUR_CLIENT_ID bằng client ID của bạn từ Imgur
+//   },
+// }));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

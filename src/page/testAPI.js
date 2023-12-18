@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import SearchCourse from "../components/searchcourse/SearchCourse";
 import CourseItem from '../components/courseitem/courseitem';
 import ProgressWord from '../components/progressWord/ProgressWord';
+import SearchWord from '../components/SearchWord/SearchWord';
+import ImageUploader from '../components/ImageUpLoad/ImageUpLoad';
 
 const TestAPI = () => {
   const course = {
@@ -25,8 +27,7 @@ const TestAPI = () => {
 
   return (
     <div className="page">
-   
-          <ProgressWord key={exampleWord.word_id} word={exampleWord} />
+      <ImageUploader/>
     </div>
   );
 };

@@ -15,4 +15,13 @@ router.get('/courses/courseId/:id', courseController.getCourseById);
 
 router.get('/courses/search', courseController.searchCoursesByName); // Sửa đường dẫn và dấu nháy đơn
 
+//  get course created by userID
+router.get('/courses/created-by/:userId',courseController.getCoursesCreatedBy)
+
+// /delete course
+router.delete('/courses/courseId/:id', courseController.deleteCourseById);
+// update course
+router.put('/courses/courseId/:id', courseController.updateCourseById);
+
+
 module.exports = router;

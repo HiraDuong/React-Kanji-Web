@@ -44,7 +44,7 @@ function Practice() {
   useEffect(() => {
     const getQuizzes = async () => {
       try {
-        const response = await fetch(`${APIpath}api/quizzes/${courseId}`);
+        const response = await fetch(`${APIpath}quizzes/${courseId}`);
         const data = await response.json();
         setCourseName(data.courseName)
      

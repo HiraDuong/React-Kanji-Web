@@ -26,6 +26,8 @@ import { useUser } from './UserContext.js';
 import Footer from "./components/footer/Footer.js";
 import Settings from "./page/Settings.js";
 import CreateCoursePage from "./page/CreateCourse.js";
+import CreateWordPage from "./page/CreateWord.js";
+import UpdateCoursePage from "./page/UpdateCourse.js";
 
 function App() {
   const { search } = useLocation();
@@ -35,7 +37,7 @@ function App() {
   const { user } = useUser();
   
   const bodyPageStyle = {
-    marginTop: user === null ? '60px' : '120px',
+    marginTop: user === null ? '60px' : '90px',
   };
   
 
@@ -67,8 +69,16 @@ function App() {
           <Route path="/register" element={<Register />} />
           {/* Setting */}
           <Route path="/settings" element={<Settings />} />
-          {/* Create Course (only for Admin) */}
-          <Route path="/admin/create-course" element = {<CreateCoursePage/>}/>
+          {/* Create Course */}
+          <Route path="/create-course" element = {<CreateCoursePage/>}/>
+
+          {/* Create Word  (only for Admin) */}
+          <Route path="admin/create-word" element = {<CreateWordPage/>}/>
+          {/* Update or Delete Courses */}
+         
+         {/* update or delete course */}
+          <Route path="course/update" element = {<UpdateCoursePage/>}/>
+          {/* delete words */}
 
           {/* route for test API */}
           <Route path="/testAPI" element={<TestAPI />}>

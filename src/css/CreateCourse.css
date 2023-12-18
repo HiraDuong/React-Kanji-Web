@@ -19,6 +19,7 @@ align-items: flex-start;
 .create-course-img{
     width: 500px;
     border-radius: 20px;
+    cursor: pointer;
 }
 .create-word-btn{
     color: white;
@@ -38,7 +39,9 @@ font-weight: 600;
 }
 
 .word-search-results{
-    height: 600px;
+    max-height: 600px;
+    overflow: auto;
+    margin-bottom: 20px;
 }
 
 
@@ -59,4 +62,38 @@ font-weight: 600;
     font-size: 20px;
     border-radius: 20px;
     font-weight: 600;
+}
+
+.create-course-words-list{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.create-course-words-list button{
+    height: 40px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+.list-word{
+    display: block; 
+position: fixed;
+width: 150px;
+height: 600px;
+background-color: #3B82F6;
+z-index: 10;
+color: rgb(255, 255, 255);
+left: 0;
+text-align: left;
+align-items: left;
+flex-direction: row;
+overflow: auto;
+}
+
+.list-word>span{
+    display: inline-block;
 }

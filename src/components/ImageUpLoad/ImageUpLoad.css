@@ -1,0 +1,35 @@
+.image-uploader-container {
+    text-align: center;
+    height: 450px;
+  }
+  
+  input {
+    margin: 10px 0;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .image-preview {
+    margin-top: 20px;
+    object-fit: cover;
+  }
+  
+  .image-preview img {
+    max-width: 100%;
+    height: 200px;
+  }
+  
+  .close-btn-container{
+    cursor: pointer;
+  }
+
+  .image-uploader-container h1{
+    margin: 0;
+    padding: 0;
+  }

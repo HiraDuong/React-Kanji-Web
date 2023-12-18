@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 // Secret key, bạn cần giữ nó an toàn và không chia sẻ với người khác
-const secretKey = 'ditmechungmay';
+const secretKey = 'kanjiflashcard';
 
 // Tạo token từ user object
 const generateToken = (user) => {

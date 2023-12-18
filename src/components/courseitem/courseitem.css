@@ -63,7 +63,7 @@ line-height: normal;
     flex-shrink: 0;
     border-radius: 16px;
     border: 1px solid #60A5FA;
-    background: rgba(0, 126, 197, 0.10);
+    background: rgb(13 144 218 / 33%);
     -webkit-backdrop-filter:blur(2px);
     backdrop-filter: blur(2px);
     cursor: pointer;
