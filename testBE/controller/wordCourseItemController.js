@@ -103,6 +103,8 @@ const createQuizz = async (req, res) => {
       quizzArray.push(quizzObject2);
 
     });
+    quizzArray.sort(() => Math.random() * 20 - 10);
+
 
     // Gửi kết quả về
     res.status(200).json( {courseName:course[0].course_name , Quizz :quizzArray} );
