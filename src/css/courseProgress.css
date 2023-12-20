@@ -53,9 +53,28 @@ width: 400px;
     border-radius: 16px;
 border: 1px solid rgba(0, 126, 197, 0.10);
 background: rgba(0, 126, 197, 0.20);
-height: 100px;
+height: 40px;
 padding-left: 10px;
+display: flex;
+align-items: center;
 }
+
+.word-list{
+    width: 100%;
+    color: #3B82F6;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 16px;
+border: 1px solid rgba(0, 126, 197, 0.10);
+background: rgba(0, 126, 197, 0.20);
+height: 150px;
+padding-left: 10px;
+
+}
+
 
 .progress-title{
     color: #3B82F6;

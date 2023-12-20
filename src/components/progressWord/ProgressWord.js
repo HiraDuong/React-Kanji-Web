@@ -13,6 +13,9 @@ const ProgressWord = ({ word }) => {
         <div id='pronunce'>
           Pronounce: {word.pronounce}
         </div>
+        <div id='pronunce'>
+          Example: {word.example}
+        </div>
       </div>
         <img id='image-container' src={word.image? word.image:'/image/default_img.png' } alt={`Image for ${word.kanji}`} />
     </div>

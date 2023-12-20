@@ -15,14 +15,13 @@
   
   input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     box-sizing: border-box;
   }
   
   .custom-button {
     width: 360px;
-    height: 50px;
+    height: 40px;
     flex-shrink: 0;
     background-color: #3498db;
     color: #fff;
@@ -35,13 +34,13 @@
   
   p {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 5px;
   }
 
   .social-login {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 5px;
   }
   
   .facebook,
@@ -83,3 +82,7 @@
   #register-container{
     text-align: left;
   }
+label{
+  padding: 0;
+  margin: 0;
+}

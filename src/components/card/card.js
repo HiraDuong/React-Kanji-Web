@@ -14,6 +14,8 @@ function Card({ word }) {
       <div className="cardContainer" onClick={handleFlip}>
         <div className="card-title">{word.kanji}</div>
         <div className="pronounce">{word.pronounce}</div>
+        <div className="pronounce">{word.example}</div>
+
       </div>
 
       <div className="cardContainer" onClick={handleFlip}>

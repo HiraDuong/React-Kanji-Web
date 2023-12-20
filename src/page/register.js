@@ -4,6 +4,7 @@ import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 import '../css/PageGlobal.css';
 import '../css/register.css';
 import { Link ,useNavigate} from "react-router-dom";
+import APIpath from "../config/APIpath";
 
 const Register = () => {
   // get info from form 
@@ -37,7 +38,7 @@ const Register = () => {
 
     try {
         // Gọi API
-        const response = await fetch('http://localhost:5000/api/users', {
+        const response = await fetch(`${APIpath}users`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -72,6 +73,7 @@ const Register = () => {
           <h2>Đăng kí</h2>
           <form onSubmit={e => { e.preventDefault(); handleRegister(); }}>
             <div className="form-input">
+              
               <label htmlFor="names">Họ tên</label>
               <input
                 type="text"
@@ -137,16 +139,16 @@ const Register = () => {
             Hoặc đăng nhập bằng 
           </p>
           <div className="social-login">
-            <button className="facebook">
+            <button onClick={()=>{alert('Xin lỗi, chức năng đang được phát triển')}} className="facebook">
               <span> <FaFacebook /> Facebook</span>
             </button>
-            <button className="twitter">
+            <button onClick={()=>{alert('Xin lỗi, chức năng đang được phát triển')}} className="twitter">
               <span>
                 <FaTwitter />
                 Twitter
               </span>
             </button>
-            <button className="google">
+            <button onClick={()=>{alert('Xin lỗi, chức năng đang được phát triển')}} className="google">
               <span>
                 <FaGoogle />
                 Google

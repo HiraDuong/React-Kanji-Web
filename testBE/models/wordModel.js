@@ -23,6 +23,10 @@ const Word = sequelize.define('word', {
   image: {
     type: DataTypes.STRING,
   },
+  example: {
+    type: DataTypes.STRING,
+    defaultValue: sequelize.literal(`'example for ' || "kanji"`), // Đặt giá trị mặc định là 'example for ' + giá trị của cột "kanji"
+  },
 }
 ,
 {

@@ -70,7 +70,7 @@ const getWordById = async (req, res) => {
       //   return res.status(403).json({ error: 'Permission denied' });
       // }
   
-      const { kanji, meaning, pronounce, image } = req.body;
+      const { kanji, meaning, pronounce, image,example } = req.body;
   
       // Xác định các trường cần thêm vào cơ sở dữ liệu
       const fieldsToInsert = {
@@ -83,6 +83,10 @@ const getWordById = async (req, res) => {
       const imageUrl = image.trim();
       if (imageUrl !== '') {
         fieldsToInsert.image = imageUrl;
+      }
+      if(example != ''){
+        fieldsToInsert.example = example;
+
       }
   
       // Tạo một từ mới trong cơ sở dữ liệu
@@ -106,4 +110,3 @@ const getWordById = async (req, res) => {
   };
 
 
-// Còn thiếu delete word

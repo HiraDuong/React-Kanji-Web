@@ -1,5 +1,5 @@
 #user-info-container{
-    width: 1130px;
+    width: 1200px;
 height: 400px;
 flex-shrink: 0;
 border-radius: 16px;
@@ -156,14 +156,14 @@ top: 300px;
 
   /* change avt */
  .img-upload-pop-up-container{
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 500px;
     background-color: #c3d7f7;
     border-radius: 20px;
     position: fixed;
     z-index: 10;
 text-align: right;
-top:0;
+top:20px;
 font-size: 20px;
   }
 

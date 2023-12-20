@@ -25,7 +25,7 @@ const MyChart = ({ totalWordLength, rememberWordLength, notRememberWordLength })
     }
   };
 
-  return <Doughnut data={data} options={options} />;
+  return <Doughnut style={{cursor:'pointer'}} data={data} options={options} />;
 };
 
 export default MyChart;

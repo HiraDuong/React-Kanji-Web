@@ -7,7 +7,7 @@ function PageNotFound() {
       <h2>404 - Not Found</h2>
       <p>Oops! The page you are looking for doesn't exist.</p>
       <p id='error-text'>
-      Vãi cặc! Trang bạn cần tìm đéo tồn tại hoặc đã bị xóa
+      Xin lỗi! Trang bạn cần tìm không tồn tại hoặc đã bị xóa
       </p>
       <Link  to={'/'}> <div id='comeBackHome'>
         Quay về trang chủ 

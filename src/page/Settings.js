@@ -41,7 +41,7 @@ const Settings = () => {
     }
     else
     try {
-        const response = await fetch(`http://localhost:5000/api/users/${user.userId}`, {
+        const response = await fetch(`${APIpath}users/${user.userId}`, {
           method: 'PUT', // hoặc 'POST' tùy thuộc vào API của bạn
           headers: {
             'Content-Type': 'application/json',

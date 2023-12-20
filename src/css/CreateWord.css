@@ -16,10 +16,11 @@
     border-radius: 16px;
 border: 1px solid #60A5FA;
 background: rgba(0, 126, 197, 0.20);
+height: 40px;
 } 
 
 .word-image-container{
-    width: 600px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,7 +28,9 @@ background: rgba(0, 126, 197, 0.20);
 }
 .word-image-container>img{
     width: 100%;
+    height: 100%;
     cursor: pointer;
+    object-fit: cover;
 }
 
 .submit-btn-container{

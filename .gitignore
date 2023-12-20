@@ -24,3 +24,4 @@ yarn-error.log*
 # API key
 /src/ThirdAPI
 /server.js
+src/ThirdAPI/imgBB-key.js

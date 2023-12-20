@@ -5,6 +5,7 @@ import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 import { useUser } from '../UserContext';
 import '../css/login.css';
 import '../css/PageGlobal.css';
+import APIpath from "../config/APIpath";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -23,8 +24,8 @@ function Login() {
 
       // API
 
-       // Địa chỉ API của bạn
-  const apiUrl = 'http://localhost:5000/api/auth/login';
+       // Địa chỉ API 
+  const apiUrl = `${APIpath}/auth/login`;
   
   // Gửi yêu cầu POST đến API login
   fetch(apiUrl, {
@@ -40,7 +41,7 @@ function Login() {
   
       // Kiểm tra xác thực sau khi login
       if (data.token) {
-        const checkAuthUrl = 'http://localhost:5000/api/auth/check-auth';
+        const checkAuthUrl = `${APIpath}/auth/check-auth`;
         
         // Gửi yêu cầu GET đến API checkAuth với token
         return fetch(checkAuthUrl, {
@@ -112,16 +113,16 @@ function Login() {
           </p>
           <p>Hoặc đăng nhập bằng</p>
           <div className="social-login">
-            <button className="facebook">
-              <span> <FaFacebook /> Facebook</span>
+            <button onClick={()=>{alert('Xin lỗi, tính năng đang được phát triển !')}} className="facebook">
+               <FaFacebook /> Facebook
             </button>
-            <button className="twitter">
-              <span>
-                <FaTwitter />Twitter</span>
+            <button onClick={()=>{alert('Xin lỗi, tính năng đang được phát triển !')}} className="twitter">
+              
+                <FaTwitter />Twitter
             </button>
-            <button className="google">
-              <span>
-                <FaGoogle />Google</span>
+            <button onClick={()=>{alert('Xin lỗi, tính năng đang được phát triển !')}} className="google">
+              
+                <FaGoogle />Google
             </button>
           </div>
         </div>

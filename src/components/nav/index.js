@@ -20,7 +20,7 @@ function Nav(){
           <li>
             <Link to='/coursePage'>Course</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to='/courseProgress'>Course Progress</Link>
           </li>
           <li>
@@ -28,8 +28,12 @@ function Nav(){
           </li>
           <li>
             <Link to='/practice'>Pratice</Link>
+          </li> */}
+          <li>
+            <Link to='/settings'>Profile</Link>
           </li>
         </ul>
+
       </nav>
     )
 }

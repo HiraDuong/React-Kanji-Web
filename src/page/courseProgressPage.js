@@ -146,6 +146,7 @@ const date = new Date(course.createdAt);
 const options = { year: 'numeric', month: 'long', day: 'numeric' };
 const formattedDate = date.toLocaleDateString('vi-VN', options);
 
+console.log (wordItem)
 
   if(user == null){
     return <RequireLoginInfo/>
@@ -166,7 +167,7 @@ const formattedDate = date.toLocaleDateString('vi-VN', options);
         <div id='info-container'>
           <div id='description-container'>
             <div id='text'>Mô tả:</div>
-            <div className='progress-course-description'>
+            <div  className='progress-course-description'>
               {course.description}
             </div>
             <div id='text'>Tác giả:</div>
@@ -177,7 +178,21 @@ const formattedDate = date.toLocaleDateString('vi-VN', options);
             <div className='progress-course-description'>
               {formattedDate}
             </div>
+            <div id='text'>Xem trước từ:</div>
+            <div className='word-list' >
+            {Array.isArray(wordItem) ? (
+    wordItem.map((word) => (
+      <div style={{display:'inline-block',fontSize:'20px'}} key={word.word_id}> {word.kanji}, </div>
+    ))
+  ) : (
+    <div></div>
+  )}
+            </div>
+
           </div>
+          
+
+
           <img id='image-container-prg' 
           src={course.course_image} alt={`Image for ${course.course_name}`} />
              <div className='chart-container'>

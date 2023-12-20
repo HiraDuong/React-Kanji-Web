@@ -11,7 +11,7 @@ import PageNotFound from "./PageNotFound";
 import { useUser } from "../UserContext";
 import RequireLoginInfo from "./RequireLoginInfo";
 import APIpath from "../config/APIpath";
-
+import { IoClose } from "react-icons/io5";
 function Learning() {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
@@ -31,6 +31,7 @@ function Learning() {
   const [loading, setLoading] = useState(true);
   // Thêm state để kiểm soát việc hiển thị nút
   const [isFinished, setIsFinished] = useState(false);
+  const [isPopup, setIsPopup] = useState(true);
 
   const href = `/practice?courseId=${courseId}`;
 
@@ -96,7 +97,6 @@ function Learning() {
   // word theo khóa học
   const { words } = cardAPIData;
 
-
   useEffect(() => {
     // console.log('Remember:', remember);
     // console.log('Forgot:', forgot);
@@ -131,8 +131,20 @@ function Learning() {
     );
 
     if (isRemember && !isAlreadyRemembered) {
+      if(isAlreadyForgotten){
+        //  Xóa từ đó khỏi danh sách chưa nhớ
+        setForgot((prevForgot) =>
+        prevForgot.filter((item) => item.kanji !== currentCard.kanji)
+      );
+      }
       setRemember((prevRemember) => [...prevRemember, currentCard]);
     } else if (!isRemember && !isAlreadyForgotten) {
+      if(isAlreadyRemembered){
+        // Xóa từ đó khỏi danh sách đã nhớ
+        setRemember((prevRemember) =>
+        prevRemember.filter((item) => item.kanji !== currentCard.kanji)
+      );
+      }
       setForgot((prevForgot) => [...prevForgot, currentCard]);
     }
 
@@ -140,6 +152,9 @@ function Learning() {
   };
 
   // cái Remember và Forgot bên backEnd
+
+  console.log('Remember',remember)
+  console.log('Forgot',forgot)
 
   
 
@@ -226,8 +241,20 @@ else
         onDecrement={handlePrevCard}
         onIncrement={handleNextCard}
       />
-  <div className={`go-to-practice ${isFinished ? "visible congrats-animation" : "hidden"}`}>
-  CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI HỌC
+  <div className={`go-to-practice ${isFinished&&isPopup ? "visible congrats-animation" : "hidden"}`}>
+  <div style={{width:'100%',textAlign:'right'}}>
+  <IoClose
+  style={{
+    cursor:'pointer'
+  }}
+    size={40}
+    onClick={()=>{
+      setIsPopup(false)
+    }}
+  />
+  <h3 style={{textAlign:'center'}}>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI HỌC
+</h3>
+  </div>
   <Link className="nagivate-button" to={href}>
     Chuyển tới trang luyện tập
   </Link>

@@ -8,6 +8,7 @@ const Footer = () => {
     <footer className="footer-container">
       <h2>&copy; 2023 Kanji Flash</h2>
       <h2>Developed by Hira</h2>
+      <br/>
       <a href='https://github.com/HiraDuong' className='footer-icon'>
       <FaGithub size={50}/>
       </a>

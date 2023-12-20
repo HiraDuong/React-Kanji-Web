@@ -185,10 +185,15 @@ useEffect(() => {
     setWordsCourseData([0]);
   };
 
+
+  
   const handleDeleteCourse = async ()=>{
     //  Gọi API ở đây để xóa course by id
    // call API
-   try {
+   const userConfirmed = window.confirm('Bạn có chắc chắn muốn xóa khóa học không?');
+
+   if (userConfirmed)
+ {  try {
    const response = fetch(`${APIpath}courses/courseId/${courseId}`, {
      method: 'DELETE',
      headers: {
@@ -209,7 +214,7 @@ useEffect(() => {
    // Handle success as needed
  } catch (error) {
    console.error('Error delete remember status', error);
- }
+ }}
   }
 
   const handleKeyPress = (e) => {
@@ -292,7 +297,7 @@ const handleImageUrlChange = (newImageUrl) => {
               onClick={() => {
                 handleAvtClick()
               }}
-              src={uploadedImageUrl || "/image/default_img.png"}
+              src={courseData.course_image || "/image/default_img.png"}
             />
          
           </div>
@@ -345,7 +350,9 @@ const handleImageUrlChange = (newImageUrl) => {
         </div>
 
         <div className="create-course-submit-btn-container">
-        <button onClick={handleDeleteCourse}>XÓA KHÓA HỌC</button>
+        <button
+         style={{backgroundColor:'#f63b3b'}}
+         onClick={handleDeleteCourse}>XÓA KHÓA HỌC</button>
 
           <button onClick={handleCancelSave}>HỦY BỎ</button>
           <button onClick={handleSaveInfo}>LƯU</button>

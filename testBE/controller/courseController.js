@@ -82,10 +82,18 @@ const searchCoursesByName = async (req, res) => {
 
     const courses = await Course.findAll({
       where: {
-        course_name: {
-          [Op.iLike]: `%${searchTerm}%`,
-          
-        },
+        [Op.or]: [
+          {
+            course_name: {
+              [Op.iLike]: `%${searchTerm}%`,
+            },
+          },
+          {
+            description: {
+              [Op.iLike]: `%${searchTerm}%`,
+            },
+          },
+        ],
       },
     });
 

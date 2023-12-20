@@ -42,7 +42,7 @@ const CoursePreviewList = ({ courses }) => {
           ))}
         </div>
       ) : (
-        <div>Bạn chưa tạo khóa học nào</div>
+        <div style={{ width: '90%', color:'white'}}>Bạn chưa tạo khóa học nào</div>
       )}
 
       <div style={{ cursor: "pointer", color: "white" }}>

@@ -178,8 +178,13 @@ if (answeredQuestions.length === quizzes.length && !hasShownCongrat) {
       answeredQuestions={answeredQuestions}
       setAnsweredQuestions={setAnsweredQuestions}
       QuestionIndex={currentIndex} />
+<Counter
+  num1={currentIndex + 1}
+  num2={quizzes.length}
+  onDecrement={timerEnabled ? null: goToPreviousQuestion }
+  onIncrement={timerEnabled ?null :goToNextQuestion }
+/>
 
-      <Counter num1={currentIndex + 1} num2={quizzes.length} onDecrement={goToPreviousQuestion} onIncrement={goToNextQuestion} />
       <Link to={href}><button className='back-btn'>
         Quay lại khóa học
       </button>
