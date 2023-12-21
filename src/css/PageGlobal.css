@@ -4,6 +4,7 @@
     flex-direction: column;
     width: 1200px;
     color: #3b82f6;
+    font-family: Helvetica !important;
 }
 .page{
     display: flex;
@@ -11,6 +12,7 @@
     align-items: center;
     width: 1200px;
     color: #3b82f6;
+    font-family: Helvetica !important;
 }
 a{
     text-decoration: none;
@@ -45,15 +47,25 @@ a{
 
 h3{
     color: #3b82f6;
-    margin: 0;
+    margin: 5px;
     padding: 0;
     
 }
 
 input{
    color: rgba(59, 130, 246, 0.61) !important;
+
+
 }
-h1,h2,p{
-    margin: 0;
+input:focus{
+    color: rgba(59, 130, 246, 0.61) !important;
+    outline: none;
+    border: rgba(59, 130, 246, 0.61) 2px solid;
+
+}
+  
+h1,h2,p,h3{
+    margin: 5px;
+
     padding: 0;
 }

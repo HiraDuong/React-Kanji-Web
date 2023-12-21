@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import APIpath from '../../config/APIpath';
-import './SearchCourse.css';
+import React, { useState, useEffect } from "react";
+import APIpath from "../../config/APIpath";
+import "./SearchCourse.css";
+import { FaFaceSadTear } from "react-icons/fa6";
 
 const SearchCourse = ({ onSearchResults }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([1]);
   const [isSearchFocused, setIsSearchFocused] = useState(true);
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`${APIpath}courses/search?searchTerm=${searchTerm}`);
+      const response = await fetch(
+        `${APIpath}courses/search?searchTerm=${searchTerm}`,
+      );
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       const data = await response.json();
       setSearchResults(data);
       onSearchResults(data);
     } catch (error) {
-      console.error('Error searching courses:', error);
+      console.error("Error searching courses:", error);
     }
   };
 
@@ -47,7 +50,7 @@ const SearchCourse = ({ onSearchResults }) => {
       <input
         id="search-container"
         type="text"
-        placeholder="Nhập tên khóa học"
+        placeholder="Nhập tên khóa học hoặc mô tả"
         value={searchTerm}
         onChange={handleChange}
         onFocus={handleFocus}

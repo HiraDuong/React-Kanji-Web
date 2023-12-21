@@ -18,8 +18,6 @@ function Heading() {
     setIsDropdownVisible(false);
   };
 
-
-  
   const handleSearch = (searchTerm) => {
     // Xử lý tìm kiếm // gọi API các thứ
     console.log("Searching for:", searchTerm);
@@ -30,8 +28,10 @@ function Heading() {
         <Link to="/" className="navBarChild">
           <b className="card">KANJI CARD</b>
         </Link>
-        <div id="usernameWelcome">Xin chào {user?.name||[]}</div>
-        
+        {user ? (
+          <div id="usernameWelcome">Xin chào {user?.name || []}</div>
+        ) : null}
+
         {user ? (
           <button id="avt-container" onClick={toggleDropdown}>
             <img
@@ -44,33 +44,35 @@ function Heading() {
           </button>
         ) : (
           <Link id="login-btn" to="/login">
-            login
+            Đăng nhập
           </Link>
         )}
-      
       </div>
 
-
       <div className="popup">
-      {isDropdownVisible && (
-  <div className="dropdown-content">
-    {/* Nội dung của dropdown */}
-    <>
-      <span onClick={closeDropdown}>
-        <Link to="/settings" className="navLink">
-          Settings
-        </Link>
-      </span>
-      <span className="navLink" onClick={() => { closeDropdown(); logout.logout(); }}>
-      <Link to="/" className="navLink">
-        Log out
-        </Link>
-
-      </span>
-    </>
-  </div>
-)}
-
+        {isDropdownVisible && (
+          <div className="dropdown-content">
+            {/* Nội dung của dropdown */}
+            <>
+              <span onClick={closeDropdown}>
+                <Link to="/settings" className="navLink">
+                  Cài đặt
+                </Link>
+              </span>
+              <span
+                className="navLink"
+                onClick={() => {
+                  closeDropdown();
+                  logout.logout();
+                }}
+              >
+                <Link to="/" className="navLink">
+                  Đăng xuất
+                </Link>
+              </span>
+            </>
+          </div>
+        )}
       </div>
     </div>
   );

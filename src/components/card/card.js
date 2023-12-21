@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import CardFlip from 'react-card-flip';
-import './card.css';
+import React, { useState } from "react";
+import CardFlip from "react-card-flip";
+import "./card.css";
 
 function Card({ word }) {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -15,11 +15,10 @@ function Card({ word }) {
         <div className="card-title">{word.kanji}</div>
         <div className="pronounce">{word.pronounce}</div>
         <div className="pronounce">{word.example}</div>
-
       </div>
 
       <div className="cardContainer" onClick={handleFlip}>
-        <div className='back-card'>
+        <div className="back-card">
           <img src={word.image} alt={`Image for ${word.kanji}`} />
           {word.meaning}
         </div>

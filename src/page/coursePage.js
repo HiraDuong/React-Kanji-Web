@@ -3,11 +3,9 @@ import React, { useState, useEffect } from "react";
 import CourseItem from "../components/courseitem/courseitem";
 import SearchCourse from "../components/searchcourse/SearchCourse";
 
-import '../css/CoursePage.css'
+import "../css/CoursePage.css";
 
 function CoursePage() {
-
-
   const [searchResults, setSearchResults] = useState([]);
 
   // Hàm này sẽ nhận dữ liệu từ SearchCourse và cập nhật kết quả tìm kiếm
@@ -21,6 +19,7 @@ function CoursePage() {
       <SearchCourse onSearchResults={handleSearchResults} />
       <div id="search-results-title">Danh sách khóa học:</div>
       {/* Hiển thị kết quả tìm kiếm */}
+
       <div id="search-results">
         {searchResults.map((course) => (
           // Render mỗi CourseItem với dữ liệu của mỗi khóa học từ kết quả tìm kiếm
@@ -30,6 +29,5 @@ function CoursePage() {
     </div>
   );
 }
-  
-  export default CoursePage;
-  
+
+export default CoursePage;

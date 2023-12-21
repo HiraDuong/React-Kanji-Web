@@ -26,7 +26,7 @@ function Learning() {
 
   const [course, setCourse] = useState(null);
   const [cardAPIData, setCardAPIData] = useState([1]); // Thêm dòng này
-  
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   // Thêm state để kiểm soát việc hiển thị nút
@@ -37,24 +37,25 @@ function Learning() {
 
   // call API
   // get course from course id
- 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-  
-        const response = await fetch(`http://localhost:5000/api/courses/courseId/${courseId}`, {
-          timeout: 5000, // Thời gian chờ tối đa là 5 giây, bạn có thể điều chỉnh giá trị này
-        });
-  
+
+        const response = await fetch(
+          `http://localhost:5000/api/courses/courseId/${courseId}`,
+          {
+            timeout: 5000, // Thời gian chờ tối đa là 5 giây, bạn có thể điều chỉnh giá trị này
+          },
+        );
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-  
+
         const data = await response.json();
-  
-       
-  
+
         if (data) {
           setCourse(data);
         }
@@ -65,22 +66,24 @@ function Learning() {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, [courseId]);
-  
+
   // get words from course
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-  
-        const response = await fetch(`http://localhost:5000/api/courses/getword/${courseId}`);
-  
+
+        const response = await fetch(
+          `http://localhost:5000/api/courses/getword/${courseId}`,
+        );
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-  
+
         const data = await response.json();
         setCardAPIData(data || []);
       } catch (error) {
@@ -90,10 +93,10 @@ function Learning() {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, [courseId]);
-  
+
   // word theo khóa học
   const { words } = cardAPIData;
 
@@ -111,7 +114,9 @@ function Learning() {
   }, [remember, forgot, words]);
 
   const handleNextCard = () => {
-    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, words?.length- 1 ?? 4 ));
+    setCurrentIndex((prevIndex) =>
+      Math.min(prevIndex + 1, words?.length - 1 ?? 4),
+    );
   };
 
   const handlePrevCard = () => {
@@ -123,27 +128,27 @@ function Learning() {
 
     // Kiểm tra xem từ hiện tại đã có trong mảng remember hoặc forgot chưa
     const isAlreadyRemembered = remember.some(
-      (item) => item.kanji === currentCard.kanji
+      (item) => item.kanji === currentCard.kanji,
     );
 
     const isAlreadyForgotten = forgot.some(
-      (item) => item.kanji === currentCard.kanji
+      (item) => item.kanji === currentCard.kanji,
     );
 
     if (isRemember && !isAlreadyRemembered) {
-      if(isAlreadyForgotten){
+      if (isAlreadyForgotten) {
         //  Xóa từ đó khỏi danh sách chưa nhớ
         setForgot((prevForgot) =>
-        prevForgot.filter((item) => item.kanji !== currentCard.kanji)
-      );
+          prevForgot.filter((item) => item.kanji !== currentCard.kanji),
+        );
       }
       setRemember((prevRemember) => [...prevRemember, currentCard]);
     } else if (!isRemember && !isAlreadyForgotten) {
-      if(isAlreadyRemembered){
+      if (isAlreadyRemembered) {
         // Xóa từ đó khỏi danh sách đã nhớ
         setRemember((prevRemember) =>
-        prevRemember.filter((item) => item.kanji !== currentCard.kanji)
-      );
+          prevRemember.filter((item) => item.kanji !== currentCard.kanji),
+        );
       }
       setForgot((prevForgot) => [...prevForgot, currentCard]);
     }
@@ -153,53 +158,53 @@ function Learning() {
 
   // cái Remember và Forgot bên backEnd
 
-  console.log('Remember',remember)
-  console.log('Forgot',forgot)
-
-  
+  console.log("Remember", remember);
+  console.log("Forgot", forgot);
 
   let handleRemember = async () => {
     handleRememberOrForgot(true);
     // call API
     try {
-      await fetch(`http://localhost:5000/api/userProgress/Remember/uc/${user.userId}/${courseId}/${words[currentIndex].word_id}/remember`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
+      await fetch(
+        `http://localhost:5000/api/userProgress/Remember/uc/${user.userId}/${courseId}/${words[currentIndex].word_id}/remember`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      })
-        .then(response => response.json())
-        .catch(error => console.error('Error:', error));
+      )
+        .then((response) => response.json())
+        .catch((error) => console.error("Error:", error));
       // Handle success as needed
     } catch (error) {
-      console.error('Error updating remember status', error);
+      console.error("Error updating remember status", error);
       // Handle error as needed
     }
-
-
   };
 
   let handleForgot = () => {
     handleRememberOrForgot(false);
-    
-      // call API
-      try {
-         fetch(`${APIpath}userProgress/Remember/uc/${user.userId}/${courseId}/${words[currentIndex].word_id}/not-remember`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then(response => response.json())
-          .then(data => console.log(data))
-          .catch(error => console.error('Error:', error));
-        // Handle success as needed
-      } catch (error) {
-        console.error('Error updating remember status', error);
-        // Handle error as needed
-      }
-  
 
+    // call API
+    try {
+      fetch(
+        `${APIpath}userProgress/Remember/uc/${user.userId}/${courseId}/${words[currentIndex].word_id}/not-remember`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      )
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error:", error));
+      // Handle success as needed
+    } catch (error) {
+      console.error("Error updating remember status", error);
+      // Handle error as needed
+    }
   };
 
   // Hàm xử lý khi chuyển tới trang luyện tập
@@ -209,65 +214,64 @@ function Learning() {
     navigate(href);
     // Ví dụ chuyển trang sử dụng hook useNavigate
   };
-  if(user == null){
-    return <RequireLoginInfo/>
-  }
-else
-  if (courseId === null) {
+  if (user == null) {
+    return <RequireLoginInfo />;
+  } else if (courseId === null) {
     return <PageNotFound />;
-  }  
-  else
-  return (
-    <div className="page">
-      <CourseTitle title={course?.[0]?.course_name} />
-      <Card word={words && words[currentIndex] ? words[currentIndex] : {}} />
+  } else
+    return (
+      <div className="page">
+        <CourseTitle title={course?.[0]?.course_name} />
+        <Card word={words && words[currentIndex] ? words[currentIndex] : {}} />
 
-
-      <div className="btn-container">
-        <RememberButton
-          color="rgb(162 155 155)"
-          text="CHƯA NHỚ"
-          onClick={handleForgot}
+        <div className="btn-container">
+          <RememberButton
+            color="rgb(162 155 155)"
+            text="CHƯA NHỚ"
+            onClick={handleForgot}
+          />
+          <RememberButton
+            color="rgb(22 73 235)"
+            text="ĐÃ NHỚ"
+            onClick={handleRemember}
+          />
+        </div>
+        <Counter
+          num1={currentIndex + 1}
+          num2={words?.length ?? 5}
+          onDecrement={handlePrevCard}
+          onIncrement={handleNextCard}
         />
-        <RememberButton
-          color="rgb(22 73 235)"
-          text="ĐÃ NHỚ"
-          onClick={handleRemember}
-        />
+        <div
+          className={`go-to-practice ${
+            isFinished && isPopup ? "visible congrats-animation" : "hidden"
+          }`}
+        >
+          <div style={{ width: "100%", textAlign: "right" }}>
+            <IoClose
+              style={{
+                cursor: "pointer",
+              }}
+              size={40}
+              onClick={() => {
+                setIsPopup(false);
+              }}
+            />
+            <h3 style={{ textAlign: "center" }}>
+              CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI HỌC
+            </h3>
+          </div>
+          <Link className="nagivate-button" to={href}>
+            Chuyển tới trang luyện tập
+          </Link>
+          HOẶC
+          <Link className="nagivate-button" to={"/coursePage"}>
+            Quay lại trang khóa học
+          </Link>
+          <img className="congrats-icon" src="/image/congrats_icon.png" />
+        </div>
       </div>
-      <Counter
-        num1={currentIndex + 1}
-        num2={words?.length ?? 5}
-        onDecrement={handlePrevCard}
-        onIncrement={handleNextCard}
-      />
-  <div className={`go-to-practice ${isFinished&&isPopup ? "visible congrats-animation" : "hidden"}`}>
-  <div style={{width:'100%',textAlign:'right'}}>
-  <IoClose
-  style={{
-    cursor:'pointer'
-  }}
-    size={40}
-    onClick={()=>{
-      setIsPopup(false)
-    }}
-  />
-  <h3 style={{textAlign:'center'}}>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI HỌC
-</h3>
-  </div>
-  <Link className="nagivate-button" to={href}>
-    Chuyển tới trang luyện tập
-  </Link>
-  HOẶC
-  <Link className="nagivate-button" to={'/coursePage'}>
-    Quay lại trang khóa học
-  </Link>
-  <img className="congrats-icon" src="/image/congrats_icon.png" />
-</div>
-
-     
-    </div>
-  );
+    );
 }
 
 export default Learning;

@@ -66,7 +66,7 @@ const CreateWordPage = () => {
 
       const responseData = await response.json();
       alert(
-        `Tạo từ mới thành công: ${wordData.kanji}, ${wordData.meaning} , ${wordData.pronounce}`
+        `Tạo từ mới thành công: ${wordData.kanji}, ${wordData.meaning} , ${wordData.pronounce}`,
       );
     } catch (error) {
       alert("Từ đã tồn tại !");
@@ -107,19 +107,11 @@ const CreateWordPage = () => {
   else
     return (
       <div className="page">
-        <h2
-          style={{
-            margin: "0",
-            padding: "0",
-          }}
-        >
-          ADMIN: Create Word
-        </h2>
         <div style={{ marginBottom: "20px" }}></div>
 
-        <div className="row">
+        <div className={`row ${showUploadImage ? "blur-background" : ""}`}>
           <div className="word-data-form">
-            Kanji:
+            <p>Kanji:</p>
             <input
               type="text"
               name="kanji"
@@ -127,7 +119,7 @@ const CreateWordPage = () => {
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
             />
-            Meaning:
+            <p>Nghĩa:</p>
             <input
               type="text"
               name="meaning"
@@ -135,7 +127,7 @@ const CreateWordPage = () => {
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
             />
-            Pronounce:
+            <p>Phát âm:</p>
             <input
               type="text"
               name="pronounce"
@@ -143,7 +135,7 @@ const CreateWordPage = () => {
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
             />
-            Example:
+            <p>Ví dụ:</p>
             <input
               type="text"
               name="example"
@@ -159,50 +151,69 @@ const CreateWordPage = () => {
             }}
           >
             <img src={wordData.image || "/image/default_img.png"} />
-            Tải ảnh lên
+            <p>Tải ảnh lên</p>
           </div>
         </div>
-        <div className="word-preview">
-          <h3>Preview:</h3>
+        <div
+          className={`word-preview ${showUploadImage ? "blur-background" : ""}`}
+        >
+          <h3>Xem trước:</h3>
           <ProgressWord word={wordData} />
+          <div className="submit-btn-container">
+            <button
+              style={{
+                background: "red",
+              }}
+              onClick={handleCancelSave}
+            >
+              HỦY
+            </button>
+            <button
+              onClick={handleSaveWord}
+              style={{
+                background: "green",
+              }}
+            >
+              LƯU
+            </button>
+          </div>
         </div>
-        <div className="submit-btn-container">
-          <button
-            style={{
-              background: "red",
-            }}
-            onClick={handleCancelSave}
-          >
-            HỦY
-          </button>
-          <button
-            onClick={handleSaveWord}
-            style={{
-              background: "green",
-            }}
-          >
-            LƯU
-          </button>
-        </div>
 
+        {showUploadImage ? (
+          <div className="img-upload-pop-up-container">
+            <IoCloseOutline
+              style={{ cursor: "pointer", padding: "20px" }}
+              onClick={handleCloseUploadImage}
+              size={40}
+            />
 
-        {
-        showUploadImage ?
-       (
-  
-  <div className='img-upload-pop-up-container'>
-        <IoCloseOutline style={{cursor:"pointer",padding:"20px"}} onClick={handleCloseUploadImage} size={40}  />
-
-  <ImageUploader display={handleCloseUploadImage} onImageUrlChange={setUploadedImageUrl} />
-<div style={{width:'100%',display:'flex' ,gap:'40%', justifyContent:'center',}}>
-  <button onClick={handleCancelUploadImgUrl} style={{width:'100px',height:'50px',borderRadius:'15px'}}>CANCEL</button>
-  <button onClick={handleCloseUploadImage} style={{width:'100px',height:'50px',borderRadius:'15px'}}>SAVE</button>
-  </div>
-  </div>
-)
-  : null
-
-}
+            <ImageUploader
+              display={handleCloseUploadImage}
+              onImageUrlChange={setUploadedImageUrl}
+            />
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                gap: "40%",
+                justifyContent: "center",
+              }}
+            >
+              <button
+                onClick={handleCancelUploadImgUrl}
+                style={{ width: "100px", height: "50px", borderRadius: "15px" }}
+              >
+                HỦY
+              </button>
+              <button
+                onClick={handleCloseUploadImage}
+                style={{ width: "100px", height: "50px", borderRadius: "15px" }}
+              >
+                LƯU
+              </button>
+            </div>
+          </div>
+        ) : null}
       </div>
     );
 };

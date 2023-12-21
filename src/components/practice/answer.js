@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./answer.css";
 
-const Answer = ({ quizAnswer, answer, resetAnswerState, onResetAnswerState, score, setScore, answeredQuestions, setAnsweredQuestions, QuestionIndex }) => {
+const Answer = ({
+  quizAnswer,
+  answer,
+  resetAnswerState,
+  onResetAnswerState,
+  score,
+  setScore,
+  answeredQuestions,
+  setAnsweredQuestions,
+  QuestionIndex,
+}) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionAnswered, setQuestionAnswered] = useState(false);
 
@@ -14,11 +24,14 @@ const Answer = ({ quizAnswer, answer, resetAnswerState, onResetAnswerState, scor
     }
   }, [resetAnswerState, onResetAnswerState]);
   const hasAnswered = answeredQuestions.some(
-    (answeredQuestion) => answeredQuestion.questionIndex === QuestionIndex
+    (answeredQuestion) => answeredQuestion.questionIndex === QuestionIndex,
   );
   const checkAnswer = (index) => {
     if (!questionAnswered && !hasAnswered) {
-      const updatedAnsweredQuestions = [...answeredQuestions, { questionIndex: QuestionIndex, answerIndex: index }];
+      const updatedAnsweredQuestions = [
+        ...answeredQuestions,
+        { questionIndex: QuestionIndex, answerIndex: index },
+      ];
       setAnsweredQuestions(updatedAnsweredQuestions);
 
       setSelectedAnswer(index);
@@ -33,24 +46,22 @@ const Answer = ({ quizAnswer, answer, resetAnswerState, onResetAnswerState, scor
       }
     }
   };
-  
+
   const getAnswerClass = (index) => {
-   
     if (hasAnswered) {
-      if(quizAnswer[index] === answer) return 'correct'
+      if (quizAnswer[index] === answer) return "correct";
       else if (
         answeredQuestions.some(
           (answeredQuestion) =>
             answeredQuestion.questionIndex === QuestionIndex &&
-            quizAnswer[index] === quizAnswer[answeredQuestion.answerIndex]
+            quizAnswer[index] === quizAnswer[answeredQuestion.answerIndex],
         )
-      ) 
+      )
         return "incorrect";
     }
-  
+
     return "";
   };
-  
 
   return (
     <div className="container">

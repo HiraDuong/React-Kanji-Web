@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useUser } from "../UserContext";
 import "../css/CreateCourse.css";
 import "../css/PageGlobal.css";
@@ -13,30 +13,33 @@ import { IoCloseOutline } from "react-icons/io5";
 
 const CreateCoursePage = () => {
   const { user } = useUser();
-  const [uploadedImageUrl, setUploadedImageUrl] = useState('');
-  const navigate =useNavigate()
+  const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const navigate = useNavigate();
   // Lưu thông tin cơ bản về khóa học
   const [courseData, setCourseData] = useState({
     create_by: user.role === 1 ? user.name : undefined,
-    created_by_user_id:user.userId,
-    course_name: '',
-    description: '',
+    created_by_user_id: user.userId,
+    course_name: "",
+    description: "",
     course_image: uploadedImageUrl,
   });
   // Lưu thông tin về các words trong khóa học
   // (mảng này chỉ chứa id word)
-  
+
   const [wordsCourseData, setWordsCourseData] = useState([]);
   const wordIds = wordsCourseData.map((word) => word.word_id);
-  
+
   useEffect(() => {
     // Mỗi khi uploadedImageUrl thay đổi, cập nhật giá trị trong courseData
-    setCourseData((prevData) => ({ ...prevData, course_image: uploadedImageUrl }));
+    setCourseData((prevData) => ({
+      ...prevData,
+      course_image: uploadedImageUrl,
+    }));
   }, [uploadedImageUrl]);
   const handleAddWord = (word) => {
     // Kiểm tra xem từ đã có trong mảng chưa
     const isWordAlreadyAdded = wordsCourseData.some(
-      (w) => w.word_id === word.word_id
+      (w) => w.word_id === word.word_id,
     );
 
     // Nếu chưa có, thêm vào mảng
@@ -49,7 +52,7 @@ const CreateCoursePage = () => {
 
   const handleRemoveWord = (wordId) => {
     setWordsCourseData((prevData) =>
-      prevData.filter((w) => w.word_id !== wordId)
+      prevData.filter((w) => w.word_id !== wordId),
     );
   };
 
@@ -57,79 +60,82 @@ const CreateCoursePage = () => {
     const { name, value } = e.target;
     setCourseData((prevData) => ({ ...prevData, [name]: value }));
   };
-  
+
   const handleSaveInfo = async () => {
-  
-    if(wordIds.length <5) alert('Vui lòng tạo khóa học có 5 từ trở lên! ')
-    else
+    if (wordIds.length < 5) alert("Vui lòng tạo khóa học có 5 từ trở lên! ");
     //  Đoạn này sẽ gọi API
     //  Đầu tiên là API tạo khóa học : bảng course
-    try {
+    else
+      try {
         const response = await fetch(`${APIpath}courses`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            course_name : courseData.course_name,
+            course_name: courseData.course_name,
             description: courseData.description,
             course_image: courseData.course_image,
-            create_by:courseData.create_by,
-            created_by_user_id:courseData.created_by_user_id
+            create_by: courseData.create_by,
+            created_by_user_id: courseData.created_by_user_id,
           }),
         });
-    
+
         if (!response.ok) {
           const errorData = await response.json();
 
-          if(errorData.error == 'SequelizeUniqueConstraintError') 
-          alert('Bạn đã dùng tên khóa học này rồi\n Vui lòng dùng tên khác')
-         else alert(`Error creating course: ${errorData.error}`);
+          if (errorData.error == "SequelizeUniqueConstraintError")
+            alert("Bạn đã dùng tên khóa học này rồi\n Vui lòng dùng tên khác");
+          else alert(`Error creating course: ${errorData.error}`);
 
           throw new Error(`Error creating course: ${errorData.error}`);
         }
-    
-        const responseData = await response.json();
-        console.log('Course created successfully. Course ID:', responseData.course_id);
-        // Tiếp theo là API add word vào course : bảng course word item
-        try{
-            const response = await fetch(`${APIpath}create-courses/${responseData.course_id}/add-words`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ course_id : responseData.course_id, word_ids : wordIds }),
-              });
-              if (!response.ok) {
-                const errorMessage = await response.text();
-                console.error(`Error: ${errorMessage}`);
-                return;
-              }
-          
-              const result = await response.json();
-              console.log(result);
-              alert(`Tạo khóa học thành công` )
-              navigate(`/courseProgress?courseId=${responseData.course_id}`)
-        }   catch (error) {
-            console.error(error);
-        }
-        
 
+        const responseData = await response.json();
+        console.log(
+          "Course created successfully. Course ID:",
+          responseData.course_id,
+        );
+        // Tiếp theo là API add word vào course : bảng course word item
+        try {
+          const response = await fetch(
+            `${APIpath}create-courses/${responseData.course_id}/add-words`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                course_id: responseData.course_id,
+                word_ids: wordIds,
+              }),
+            },
+          );
+          if (!response.ok) {
+            const errorMessage = await response.text();
+            console.error(`Error: ${errorMessage}`);
+            return;
+          }
+
+          const result = await response.json();
+          console.log(result);
+          alert(`Tạo khóa học thành công`);
+          navigate(`/courseProgress?courseId=${responseData.course_id}`);
+        } catch (error) {
+          console.error(error);
+        }
       } catch (error) {
         console.error(error.message);
       }
-    
-    
-
   };
   const handleCancelSave = () => {
     //  set về mặc định
     setCourseData({
       create_by: user.name,
-      course_name: '',
-      description: '',
+      course_name: "",
+      description: "",
       course_image: uploadedImageUrl,
-      created_by_user_id: user.userId
+      created_by_user_id: user.userId,
     });
     setWordsCourseData([0]);
   };
@@ -148,47 +154,46 @@ const CreateCoursePage = () => {
     setSearchResults(results);
   };
 
-// change course img
+  // change course img
 
-
-const handleImageUrlChange = (newImageUrl) => {
-  setUploadedImageUrl(newImageUrl);
-};
+  const handleImageUrlChange = (newImageUrl) => {
+    setUploadedImageUrl(newImageUrl);
+  };
 
   const [showUploadImage, setShowUploadImage] = useState(false);
 
   const handleAvtClick = () => {
     setShowUploadImage(true);
   };
-  
+
   const handleCloseUploadImage = () => {
     setShowUploadImage(false);
   };
 
-  
-  const handleCancelUploadImgUrl = ()=>{
-    setUploadedImageUrl('')
+  const handleCancelUploadImgUrl = () => {
+    setUploadedImageUrl("");
     setShowUploadImage(false);
-  }
-
+  };
 
   // Tạm thời cho phép tất cả user quyền tạo khóa học
   if (user === null) return <PageNotFound />;
 
   return (
     <div className=" row full-size">
-  <div className="list-word" >
-  <p style={{margin:'10px'}}>Danh sách từ:</p>
+      <div className={`list-word ${showUploadImage ? "blur-background" : ""}`}>
+        <p style={{ margin: "10px" }}>Danh sách từ:</p>
 
-  {wordsCourseData.map((word, index) => (
-    <span key={word.word_id} >
-      {word.kanji} ,
-      {index !== wordsCourseData.length - 1 ? <br /> : ''}
-    </span>
-  ))}
-</div>
+        {wordsCourseData.map((word, index) => (
+          <span key={word.word_id}>
+            {word.kanji} ,{index !== wordsCourseData.length - 1 ? <br /> : ""}
+          </span>
+        ))}
+      </div>
 
-      <div style={{ marginLeft: '120px' }} className="page">
+      <div
+        style={{ marginLeft: "120px" }}
+        className={`page ${showUploadImage ? "blur-background" : ""}`}
+      >
         <h2>Tạo khóa học</h2>
         <div className="row">
           <div className="create-course-header">
@@ -213,7 +218,7 @@ const handleImageUrlChange = (newImageUrl) => {
             <img
               className="create-course-img"
               onClick={() => {
-                handleAvtClick()
+                handleAvtClick();
               }}
               src={uploadedImageUrl || "/image/default_img.png"}
             />
@@ -222,28 +227,6 @@ const handleImageUrlChange = (newImageUrl) => {
             </Link>
           </div>
         </div>
-        
-
-
-        {
-        showUploadImage ?
-       (
-  
-  <div className='img-upload-pop-up-container'>
-        <IoCloseOutline style={{cursor:"pointer",padding:"20px"}} onClick={handleCloseUploadImage} size={40}  />
-
-  <ImageUploader display={handleCloseUploadImage} onImageUrlChange={setUploadedImageUrl} />
-<div style={{width:'100%',display:'flex' ,gap:'40%', justifyContent:'center',}}>
-  <button onClick={handleCancelUploadImgUrl} style={{width:'100px',height:'50px',borderRadius:'15px'}}>CANCEL</button>
-  <button onClick={handleCloseUploadImage} style={{width:'100px',height:'50px',borderRadius:'15px'}}>SAVE</button>
-  </div>
-  </div>
-)
-  : null
-
-}
-      
-
 
         <SearchWord onSearchResults={handleSearchResults} />
 
@@ -267,6 +250,7 @@ const handleImageUrlChange = (newImageUrl) => {
               </div>
             </div>
           ))}
+          ta
         </div>
 
         <div className="create-course-submit-btn-container">
@@ -274,6 +258,42 @@ const handleImageUrlChange = (newImageUrl) => {
           <button onClick={handleSaveInfo}>TẠO KHÓA HỌC</button>
         </div>
       </div>
+
+      {showUploadImage ? (
+        <div className="img-upload-pop-up-container">
+          <IoCloseOutline
+            style={{ cursor: "pointer", padding: "20px" }}
+            onClick={handleCloseUploadImage}
+            size={40}
+          />
+
+          <ImageUploader
+            display={handleCloseUploadImage}
+            onImageUrlChange={setUploadedImageUrl}
+          />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              gap: "40%",
+              justifyContent: "center",
+            }}
+          >
+            <button
+              onClick={handleCancelUploadImgUrl}
+              style={{ width: "100px", height: "50px", borderRadius: "15px" }}
+            >
+              HỦY
+            </button>
+            <button
+              onClick={handleCloseUploadImage}
+              style={{ width: "100px", height: "50px", borderRadius: "15px" }}
+            >
+              LƯU
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

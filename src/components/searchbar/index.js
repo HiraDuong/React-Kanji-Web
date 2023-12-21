@@ -1,10 +1,10 @@
 // SearchBar.js
 
-import React, { useState } from 'react';
-import './searchbar.css'; // Import CSS
-import { RiSearchLine } from 'react-icons/ri';
+import React, { useState } from "react";
+import "./searchbar.css"; // Import CSS
+import { RiSearchLine } from "react-icons/ri";
 const SearchBar = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -25,7 +25,7 @@ const SearchBar = ({ onSearch }) => {
         onChange={handleSearchChange}
       />
       <button className="searchButton" type="submit">
-      <RiSearchLine />
+        <RiSearchLine />
       </button>
     </form>
   );

@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import APIpath from '../../config/APIpath';
-import ProgressWord from '../progressWord/ProgressWord';
-import '../searchcourse/SearchCourse.css'
-
+import React, { useState, useEffect } from "react";
+import APIpath from "../../config/APIpath";
+import ProgressWord from "../progressWord/ProgressWord";
+import "../searchcourse/SearchCourse.css";
 
 const SearchWord = ({ onSearchResults }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchFocused, setIsSearchFocused] = useState(true);
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`${APIpath}search/words?searchTerm=${searchTerm}`);
+      const response = await fetch(
+        `${APIpath}search/words?searchTerm=${searchTerm}`,
+      );
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       const data = await response.json();
       setSearchResults(data);
       onSearchResults(data);
     } catch (error) {
-      console.error('Error searching courses:', error);
+      console.error("Error searching courses:", error);
     }
   };
 
@@ -46,17 +47,16 @@ const SearchWord = ({ onSearchResults }) => {
 
   return (
     <div>
-    <input
-      id="search-container"
-      type="text"
-      placeholder="Nhập tên, cách phát âm hoặc nghĩa của từ"
-      value={searchTerm}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-    />
-    
-  </div>
+      <input
+        id="search-container"
+        type="text"
+        placeholder="Nhập tên, cách phát âm hoặc nghĩa của từ"
+        value={searchTerm}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+    </div>
   );
 };
 
